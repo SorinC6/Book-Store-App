@@ -1,11 +1,21 @@
-import React from 'react'
+import React from 'react';
+import Register from '../../components/RegisterComponent/Register';
+import { connect } from 'react-redux';
+import { register } from '../../store/actions';
 
-const RegisterView  = (props) => {
-   return(
-      <div>
-         Register View
-      </div>
-   )
-}
+const RegisterView = (props) => {
+   console.log('REGISTER VIEW PROPS',props.isRegistering)
+	return (
+		<div>
+			<Register register={props.register} isRegistering={props.isRegistering} />
+		</div>
+	);
+};
 
-export default RegisterView;
+const mapStateToProps = (state) => {
+	return {
+		isRegistering: state.isRegistering
+	};
+};
+
+export default connect(mapStateToProps,{register})(RegisterView);
