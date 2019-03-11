@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {withRouter} from 'react-router-dom'
-import Loader from 'react-loader-spinner'
-//import Home from '../../views/HomeView/HomeView'
+import { withRouter } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
+import './Login.css';
 
 class LoginForm extends React.Component {
 	constructor() {
@@ -51,75 +51,55 @@ class LoginForm extends React.Component {
 			username: this.state.userNameInput,
 			password: this.state.passwordInput,
 			role: this.state.role
-      };
-      
+		};
+
 		try {
-         !this.state.inputInvalid && this.props.login(userData);
-        // this.props.history.push('./home')
+			!this.state.inputInvalid && this.props.login(userData);
+			// this.props.history.push('./home')
 		} catch (err) {
 			this.props.history.push('/login');
 			console.log('login form error: ', err);
 			return;
 		}
-   };
+	};
 
-   
 	render() {
-      // once logged in, redirect
-      console.log(this.props.isLoggedIn)
-      localStorage.getItem('bookrUser') && this.props.history.push('/home');
-  
-      return (
-        <>
-          <form onSubmit={this.handleLogin} className="inner-container box-container ">
-            <input
-              type="text"
-              placeholder="UserName"
-              name="userNameInput"
-              value={this.state.userNameInput}
-              onChange={this.handleInput}
-              autoComplete="off"
-              className="login-input "
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              name="passwordInput"
-              value={this.state.passwordInput}
-              onChange={this.handleInput}
-              autoComplete="off"
-              className="login-input "
+		// once logged in, redirect
+		console.log(this.props.isLoggedIn);
+		localStorage.getItem('bookrUser') && this.props.history.push('/home');
 
-            />
-            <button 
-              type="submit" 
-              value="Login" 
-              disabled={this.state.inputInvalid}
-              className="login-btn"
-            >
-            Login
-            </button>
-            <Link to="/register">
-              <button  className="login-btn">
-                Register
-              </button>
-            </Link>
-          </form>
-
-          {
-             this.props.isLoggingIn 
-            &&
-                  <Loader 
-                     type="Puff"
-                     color="#00BFFF"
-                      height="100"	
-                     width="100"
-                  />   
-      
-          }
-        </>
-      );
-    }
+		return (
+			<div className="form-loader">
+				<form onSubmit={this.handleLogin} className="inner-container box-container ">
+					<input
+						type="text"
+						placeholder="UserName"
+						name="userNameInput"
+						value={this.state.userNameInput}
+						onChange={this.handleInput}
+						autoComplete="off"
+						className="login-input "
+					/>
+					<input
+						type="password"
+						placeholder="Password"
+						name="passwordInput"
+						value={this.state.passwordInput}
+						onChange={this.handleInput}
+						autoComplete="off"
+						className="login-input "
+					/>
+					<button type="submit" value="Login" disabled={this.state.inputInvalid} className="login-btn">
+						Login
+					</button>
+					<Link to="/register">
+						<button className="login-btn">Register</button>
+					</Link>
+				</form>
+				<div style={{textAlign:'center',marginTop:'20px'}}>{this.props.isLoggingIn && <Loader type="Puff" color="#00BFFF" height="200" width="200" />}</div>
+			</div>
+		);
+	}
 }
 
 export default withRouter(LoginForm);

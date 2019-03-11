@@ -7,7 +7,6 @@ const LoginView = (props) => {
 	console.log(props);
 	return (
 		<div>
-			<p>Login Views</p>
 			<Login login={props.login} isLoggingIn={props.isLoggingIn} isLoggedIn={props.isLoggedIn} />
 		</div>
 	);

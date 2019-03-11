@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Loader from 'react-loader-spinner';
 import { Link, withRouter } from 'react-router-dom';
+import './Register.css';
 
 class RegisterForm extends Component {
 	state = {
@@ -51,10 +52,10 @@ class RegisterForm extends Component {
 		}
 	};
 	render() {
-      //console.log('Register form props:', this.props);
-      localStorage.getItem('bookUser') && this.props.history.push('/login')
+		//console.log('Register form props:', this.props);
+		localStorage.getItem('bookUser') && this.props.history.push('/login');
 		return (
-			<React.Fragment>
+			<div className="form-loader">
 				<form onSubmit={this.handleRegister} className="inner-container box-container ">
 					<input
 						type="text"
@@ -63,7 +64,7 @@ class RegisterForm extends Component {
 						value={this.state.userNameInput}
 						onChange={this.handleInput}
 						autoComplete="off"
-						//className="login-input"
+						className="login-input"
 					/>
 					<input
 						type="password"
@@ -72,7 +73,7 @@ class RegisterForm extends Component {
 						value={this.state.passwordInput}
 						onChange={this.handleInput}
 						autoComplete="off"
-						//className="login-input"
+						className="login-input"
 					/>
 					<input
 						type="password"
@@ -81,7 +82,7 @@ class RegisterForm extends Component {
 						value={this.state.passwordConfirmInput}
 						onChange={this.handleInput}
 						autoComplete="off"
-						//className="login-input"
+						className="login-input"
 					/>
 					<button type="submit" value="Register" disabled={this.state.inputInvalid} className="login-btn">
 						Register
@@ -90,8 +91,10 @@ class RegisterForm extends Component {
 						<button className="login-btn">Login</button>
 					</Link>
 				</form>
-				{this.props.isRegistering && <Loader type="Puff" color="#00BFFF" height="100" width="100" />}
-			</React.Fragment>
+				<div style={{ textAlign: 'center', marginTop: '20px' }}>
+					{this.props.isRegistering && <Loader type="Puff" color="#00BFFF" height="200" width="200" />}
+				</div>
+			</div>
 		);
 	}
 }

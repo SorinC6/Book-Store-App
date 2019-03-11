@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink ,withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../store/actions/logoutAction';
 
@@ -30,14 +30,21 @@ const LinkContainer = styled(NavLink)`
       font-size:20px;
 `;
 
+
+
 const NavigationComponent = (props) => {
+
+   const logout = () =>{
+      props.logout();
+      props.history.push('/')
+   }
 	return (
 		<NavContainer>
 			<LinkContainer to="/home">Home</LinkContainer>
 			<LinkContainer to="/contact">Contact</LinkContainer>
-			<button onClick={props.logout}>Logout</button>
+			<button onClick={logout}>Logout</button>
 		</NavContainer>
 	);
 };
 
-export default connect(null, { logout })(NavigationComponent);
+export default withRouter(connect(null, { logout })(NavigationComponent));

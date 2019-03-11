@@ -5,13 +5,16 @@
   "dependencies": {
     "axios": "^0.18.0",
     "font-awesome": "^4.7.0",
+    "prop-types": "^15.7.2",
     "react": "^16.8.4",
+    "react-confetti": "^2.6.0",
     "react-dom": "^16.8.4",
     "react-fontawesome": "^1.6.1",
     "react-loader-spinner": "^2.3.0",
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.8",
+    "react-use": "^5.5.6",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.1.3"

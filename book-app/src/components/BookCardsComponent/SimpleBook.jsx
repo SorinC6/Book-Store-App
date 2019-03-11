@@ -6,11 +6,9 @@ import BookImg from '../../assets/book-cover.png';
 const Container = styled.div`
 	margin: 20px;
 	display: block;
-	/* margin: 0 auto; */
 	width: 200px;
 	height: 350px;
 	transform: translateY(-30px);
-	/* // border: 1px solid purple; */
 	border-style: double;
 	border-radius: 10px;
 	border-color: purple;
@@ -35,13 +33,13 @@ const SimpleBook = (props) => {
 
 	return (
 		// <Link to={`home/${id}`}>
-			<Container>
-				<div className="entry">
-					<img src={BookImg} alt="title" />
-					<h4>{title}</h4>
-					<p>By {author}</p>
-				</div>
-			</Container>
+		<Container>
+			<div className="entry">
+				<img src={BookImg} alt="title" />
+				<h4>{title}</h4>
+				<p>By {author}</p>
+			</div>
+		</Container>
 		// </Link>
 	);
 };

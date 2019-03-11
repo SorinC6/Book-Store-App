@@ -109,7 +109,7 @@ const rootReducer = (state = initialState, action) => {
 				error: action.payload
 			};
 		//=============================LOGOUT case ================
-		case LOGIN_TRUE:
+		case LOGOUT:
 			return {
 				...state,
 				userName: '',

@@ -1,11 +1,11 @@
 import React from 'react';
 import RegisterForm from './RegisterForm';
+import './Register.css'
 
 const Register = (props) => {
 	//console.log('Register props ', props);
 	return (
-		<div>
-			<h1>Register Componnent</h1>
+		<div className='root-container'>
 			<RegisterForm {...props} />
 		</div>
 	);

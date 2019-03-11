@@ -13,14 +13,9 @@ class App extends Component {
 		return (
 			<div className="App">
 				<div className="home-container">
-					<nav className="nav-container">
-						<NavigationComponent />
-					</nav>
+					<Route path="/nav" component={NavigationComponent} />
 					<Route exact path="/home" component={HomeView} />
-					<Route path="/home/:id" render={(props) => <DetailViewBook {...props} />} />
-					<footer>
-						<h2>Footer Content</h2>
-					</footer>
+					<Route exact path="/home/:id" render={(props) => <DetailViewBook {...props} />} />
 				</div>
 
 				<Route exact path="/" component={StartPageView} />
