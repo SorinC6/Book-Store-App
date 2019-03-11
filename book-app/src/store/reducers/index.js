@@ -10,7 +10,7 @@ import {
 } from '../actions/index';
 
 //checking with token later
-const user = localStorage.getItem('bookUser');
+const user = localStorage.getItem('bookrUser');
 const loggedIn = user ? true : false;
 
 const initialState = {
@@ -32,7 +32,7 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, action) => {
-   //console.log(action.type)
+	//console.log(action.type)
 	switch (action.type) {
 		//====================REGISTER case =============
 		case REGISTER_START:
@@ -53,8 +53,36 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				isRegistering: false,
 				error: action.payload
-         };
-      //===================LOGIN case==================
+			};
+		//===================LOGIN case==================
+		case LOGIN_START:
+			return {
+				...state,
+				isLoggingIn: true,
+				error: false
+			};
+		case LOGIN_SUCCESS:
+			return {
+				...state,
+				isLoggingIn: false,
+				userName: action.payload
+			};
+		case LOGIN_FAILURE:
+			return {
+				...state,
+				isLoggingIn: false,
+				error: action.payload
+			};
+		case LOGIN_TRUE:
+			return {
+				...state,
+				isLoggedIn: true
+			};
+		case LOGIN_FALSE:
+			return {
+				...state,
+				isLoggedIn: false
+			};
 		default:
 			return state;
 	}

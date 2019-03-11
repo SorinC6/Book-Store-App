@@ -17,9 +17,9 @@ export const checkCurentLogin = () => (dispatch) => {
 export const login = (userData) => (dispatch) => {
 	dispatch({ type: LOGIN_START });
 	axios
-		.post('https://bookr-app.herokuapp.com/api/login', userData)
+		.post('http://localhost:7111/api/login', userData)
 		.then((res) => {
-			localStorage.setItem('bookUser', userData.name); //sending the username to localstorage
+			localStorage.setItem('bookrUser', userData.username); //sending the username to localstorage
 			localStorage.setItem('token', res.data.token); //sending the token in local storage
 			dispatch({ type: LOGIN_SUCCESS, payload: userData.username });
 		})

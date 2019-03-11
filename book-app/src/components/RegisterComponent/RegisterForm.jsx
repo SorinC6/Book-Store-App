@@ -41,19 +41,18 @@ class RegisterForm extends Component {
 			role: this.state.role
 		};
 
-		console.log(userData);
+		//console.log(userData);
 
 		try {
 			this.state.userNameInput && this.props.register(userData);
-			this.props.history.push('/home');
+			//this.props.history.push('/home');
 		} catch (err) {
 			console.log(err);
 		}
-
-
 	};
 	render() {
-		console.log('Register form props:', this.props);
+      //console.log('Register form props:', this.props);
+      localStorage.getItem('bookUser') && this.props.history.push('/login')
 		return (
 			<React.Fragment>
 				<form onSubmit={this.handleRegister} className="inner-container box-container ">
