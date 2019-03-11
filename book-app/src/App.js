@@ -12,20 +12,20 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<nav className="nav-container">
-					<NavigationComponent />
-				</nav>
-
-				<div className="home-container" />
+				<div className="home-container">
+					<nav className="nav-container">
+						<NavigationComponent />
+					</nav>
+					<Route exact path="/home" component={HomeView} />
+					<Route path="/home/:id" render={(props) => <DetailViewBook {...props} />} />
+					<footer>
+						<h2>Footer Content</h2>
+					</footer>
+				</div>
 
 				<Route exact path="/" component={StartPageView} />
 				<Route path="/login" component={LoginView} />
 				<Route path="/register" component={RegisterView} />
-				<Route exact path="/home" component={HomeView} />
-				<Route path="/home/:id" render={(props) => <DetailViewBook {...props} />} />
-				<footer>
-					<h2>Footer Content</h2>
-				</footer>
 			</div>
 		);
 	}

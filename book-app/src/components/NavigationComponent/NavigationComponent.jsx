@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logout } from '../../store/actions/logoutAction';
 
 const NavContainer = styled.nav`
 	max-width: 100%;
@@ -12,7 +14,7 @@ const NavContainer = styled.nav`
 	position: fixed;
 	top: 0;
 	width: 100%;
-   z-index: 2;
+	z-index: 2;
 
 	button {
 		position: absolute;
@@ -33,9 +35,9 @@ const NavigationComponent = (props) => {
 		<NavContainer>
 			<LinkContainer to="/home">Home</LinkContainer>
 			<LinkContainer to="/contact">Contact</LinkContainer>
-			<button>Logout</button>
+			<button onClick={props.logout}>Logout</button>
 		</NavContainer>
 	);
 };
 
-export default NavigationComponent;
+export default connect(null, { logout })(NavigationComponent);
