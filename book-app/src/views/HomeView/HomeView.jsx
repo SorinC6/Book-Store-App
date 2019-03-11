@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getBooks } from '../../store/actions/index';
+import HomeComponent from '../../components/HomeComponent/HomeComponent';
 
 class HomeView extends React.Component {
 	componentDidMount() {
-      
 		this.props.getBooks();
 	}
 	render() {
-		console.log('Books: ', this.props.books);
+		//console.log('Books: ', this.props.books);
 		return (
 			<div>
-				<p>Home View</p>
+				<HomeComponent books={this.props.books} isFetchingBooks={this.props.isFetchingBooks} />
 			</div>
 		);
 	}
@@ -19,7 +19,8 @@ class HomeView extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		books: state.books
+		books: state.books,
+		isFetchingBooks: state.isFetchingBooks
 	};
 };
 
