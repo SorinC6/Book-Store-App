@@ -1,11 +1,7 @@
-.bookinfo {
-	background-size: cover;
-	background-position: center;
-	max-width: 60%;
-	height: 600px;
+.book-info {
 
-   animation: animateMovieinfo 1s;
-   
+
+	animation: animateMovieinfo 1s;
 }
 
 @keyframes animateMovieinfo {
@@ -19,14 +15,13 @@
 
 .book-content {
 	display: flex;
-   justify-content: space-evenly;
-   align-items: center;
+	justify-content: space-evenly;
+	align-items: center;
 	margin: 0 auto;
 	max-width: 80%;
 
 	background: rgba(87, 57, 57, 0.7);
 }
-
 
 .text {
 	font-family: Arial, Helvetica, sans-serif;
@@ -39,8 +34,6 @@
 	left: 360px;
 }
 
-
-
 .rating {
 	width: 250px;
 	height: 20px;
@@ -48,13 +41,9 @@
 	position: relative;
 }
 
-
-
-
 .fa-film {
 	position: absolute;
 	bottom: 40px;
 	right: 40px;
 	color: #fff;
 }
-

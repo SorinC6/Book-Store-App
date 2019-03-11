@@ -16,15 +16,21 @@ const WrapperLink = styled(Link)`
    }
 `;
 
+const CostumDiv = styled.div`
+   display:flex;
+   flex-direction:column;
+   justify-content:flex-end;
+`
+
 const StartPageView = (props) => {
 
 
 	return (
 		<div style={{ textAlign: 'center', marginTop: '200px' }}>
-			<div>
+			<CostumDiv>
 				<WrapperLink to="/login">Login</WrapperLink>
 				<WrapperLink to="/register">Register</WrapperLink>
-			</div>
+			</CostumDiv>
 
 			<div s>
 				<Confetti width="600" height="1000" />

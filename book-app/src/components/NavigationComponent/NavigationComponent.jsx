@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink ,withRouter} from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../store/actions/logoutAction';
 
 const NavContainer = styled.nav`
 	max-width: 100%;
-	height: 100px;
-	background: purple;
+	background: #1c1c1c;
+	padding: 0 20px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -24,23 +24,29 @@ const NavContainer = styled.nav`
 `;
 
 const LinkContainer = styled(NavLink)`
-      padding:20px;
-      color:black;
+      padding:20px 0px;
+      color:white;
       font-weight:bold;
       font-size:20px;
+      text-decoration:none
+
+      &:hover{
+			transform: scale(1.4);
+			transition: 0.25s ease-in-out;
+			color: white;
+		
+      }
 `;
 
-
-
 const NavigationComponent = (props) => {
-
-   const logout = () =>{
-      props.logout();
-      props.history.push('/')
-   }
+	const logout = () => {
+		props.logout();
+		props.history.push('/');
+	};
 	return (
 		<NavContainer>
 			<LinkContainer to="/home">Home</LinkContainer>
+			<LinkContainer to="/contact">About</LinkContainer>
 			<LinkContainer to="/contact">Contact</LinkContainer>
 			<button onClick={logout}>Logout</button>
 		</NavContainer>
