@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {withRouter} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
-import Home from '../../views/HomeView/HomeView'
+//import Home from '../../views/HomeView/HomeView'
 
 class LoginForm extends React.Component {
 	constructor() {

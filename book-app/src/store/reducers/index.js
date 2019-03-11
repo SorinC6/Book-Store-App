@@ -6,7 +6,10 @@ import {
 	LOGIN_FALSE,
 	LOGIN_START,
 	LOGIN_SUCCESS,
-	LOGIN_FAILURE
+	LOGIN_FAILURE,
+	FETCHING_BOOKS_START,
+	FETCHING_BOOKS_SUCCESS,
+	FETCHING_BOOKS_FAILURE
 } from '../actions/index';
 
 //checking with token later
@@ -82,6 +85,27 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isLoggedIn: false
+			};
+		// =======================FETCHING BOOKS case ============
+		case FETCHING_BOOKS_START:
+			return {
+				...state,
+				isFetchingBooks: true,
+				error: ''
+			};
+		case FETCHING_BOOKS_SUCCESS:
+			//console.log('action.payload', action.payload);
+			return {
+				...state,
+				isFetchingBooks: false,
+				error: '',
+				books: action.payload
+			};
+		case FETCHING_BOOKS_FAILURE:
+			return {
+				...state,
+				isFetchingBooks: false,
+				error: action.payload
 			};
 		default:
 			return state;
