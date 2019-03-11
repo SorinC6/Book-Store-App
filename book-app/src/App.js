@@ -4,6 +4,7 @@ import './App.css';
 import StartPageView from './views/StartPageView/StartPageView';
 import LoginView from './views/LoginView/LoginView';
 import RegisterView from './views/RegisterView/RegisterView';
+import HomeView from './views/HomeView/HomeView'
 
 class App extends Component {
 	render() {
@@ -18,6 +19,7 @@ class App extends Component {
 				<Route exact path="/" component={StartPageView} />
 				<Route path="/login" component={LoginView} />
 				<Route path="/register" component={RegisterView} />
+            <Route path="/home" component={HomeView}/>
 
 				<footer>
 					<h2>Footer Content</h2>

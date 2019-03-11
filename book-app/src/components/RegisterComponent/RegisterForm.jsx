@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
+import { Link, withRouter } from 'react-router-dom';
 
 class RegisterForm extends Component {
 	state = {
@@ -11,17 +12,46 @@ class RegisterForm extends Component {
 	};
 
 	handleInput = (e) => {
-		this.setState({
-			[e.target.name]: e.target.value
-		});
-   };
+		this.setState(
+			{
+				[e.target.name]: e.target.value
+			},
+			() => this.validateInput()
+		);
+	};
 
-   validateInput = () => {
-      
-   }
-   
+	validateInput = () => {
+		if (this.state.userNameInput && this.state.passwordInput) {
+			if (this.state.passwordInput === this.state.passwordConfirmInput) {
+				this.setState({ inputInvalid: false });
+			} else {
+				this.setState({ inputInvalid: true });
+			}
+		} else {
+			this.setState({ inputInvalid: true });
+		}
+	};
+
+	handleRegister = (e) => {
+		e.preventDefault();
+
+		const userData = {
+			username: this.state.userNameInput,
+			password: this.state.passwordInput,
+			role: this.state.role
+		};
+
+		console.log(userData);
+
+		try {
+			this.state.userNameInput && this.props.register(userData);
+			this.props.history.push('/home');
+		} catch (err) {
+			console.log(err);
+		}
 
 
+	};
 	render() {
 		console.log('Register form props:', this.props);
 		return (
@@ -61,9 +91,10 @@ class RegisterForm extends Component {
 						<button className="login-btn">Login</button>
 					</Link>
 				</form>
+				{this.props.isRegistering && <Loader type="Puff" color="#00BFFF" height="100" width="100" />}
 			</React.Fragment>
 		);
 	}
 }
 
-export default RegisterForm;
+export default withRouter(RegisterForm);

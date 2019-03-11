@@ -32,6 +32,7 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, action) => {
+   //console.log(action.type)
 	switch (action.type) {
 		//====================REGISTER case =============
 		case REGISTER_START:

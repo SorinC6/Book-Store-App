@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { register } from '../../store/actions';
 
 const RegisterView = (props) => {
-   console.log('REGISTER VIEW PROPS',props.isRegistering)
+   //console.log('REGISTER VIEW PROPS',props.isRegistering)
 	return (
 		<div>
 			<Register register={props.register} isRegistering={props.isRegistering} />
