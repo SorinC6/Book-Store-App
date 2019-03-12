@@ -34,7 +34,7 @@ export const deleteBook = (id) => (dispatch) => {
 	axiosWithAuth()
 		.delete(`http://localhost:7111/api/books/${id}`)
 		.then((res) => {
-			debugger;
+			//debugger;
 			dispatch({ type: DELETING_BOOK_SUCCESS, payload: id });
 		})
 		.catch((err) => dispatch({ type: DELETING_BOOK_FAILURE, payload: err.message }));

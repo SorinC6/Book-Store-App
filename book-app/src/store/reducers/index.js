@@ -16,7 +16,13 @@ import {
 	ADDING_BOOK_FAILURE,
 	DELETING_BOOK_START,
 	DELETING_BOOK_SUCCESS,
-	DELETING_BOOK_FAILURE
+	DELETING_BOOK_FAILURE,
+	FETCHING_REVIEWS_START,
+	FETCHING_REVIEWS_SUCCESS,
+	FETCHING_REVIEWS_FAILURE,
+	POSTING_REVIEW_START,
+	POSTING_REVIEW_SUCCESS,
+	POSTING_REVIEW_FAILURE
 } from '../actions/index';
 
 //checking with token later
@@ -150,7 +156,7 @@ const rootReducer = (state = initialState, action) => {
 				error: ''
 			};
 		case DELETING_BOOK_SUCCESS:
-			debugger;
+			//debugger;
 			return {
 				...state,
 				isDeletingBook: false,
@@ -161,6 +167,44 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isDeletingBook: false,
+				error: action.payload
+			};
+		//===============================FETCHING REVIEW case ===============
+		case FETCHING_REVIEWS_START:
+			return {
+				...state,
+				isFetchingReviews: true,
+				error: ''
+			};
+		case FETCHING_REVIEWS_SUCCESS:
+			return {
+				...state,
+				isFetchingReviews: false,
+				reviews: action.payload
+			};
+		case FETCHING_REVIEWS_FAILURE:
+			return {
+				...state,
+				isFetchingReviews: false,
+				error: action.payload
+			};
+		// ===============================POSTING REVIEW case =======================
+		case POSTING_REVIEW_START:
+			return {
+				...state,
+				isPostingReview: true,
+				error: ''
+			};
+		case POSTING_REVIEW_SUCCESS:
+			return {
+				...state,
+				isPostingReview: false,
+				reviews: action.payload
+			};
+		case POSTING_REVIEW_FAILURE:
+			return {
+				...state,
+				isPostingReview: false,
 				error: action.payload
 			};
 		default:

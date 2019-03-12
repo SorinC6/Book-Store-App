@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addBook } from '../../store/actions/index';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 import Navigation from '../NavigationComponent/NavigationComponent';
 import Footer from '../FooterComponent/Footer';
 
@@ -57,13 +58,14 @@ class AddFormComponent extends Component {
 		e.preventDefault();
 		//console.log(this.state.newBook);
 		this.props.addBook(this.state.newBook);
+		this.props.history.push('/home');
 	};
 
 	render() {
 		return (
 			<div className="form-container">
 				<Navigation />
-				<h1 style={{ textAlign: 'center' ,marginTop:'80px'}}>Add a book to Collection</h1>
+				<h1 style={{ textAlign: 'center', marginTop: '80px' }}>Add a book to Collection</h1>
 				<FromWrapper onSubmit={this.addBook}>
 					<input
 						className="input-style"
@@ -93,7 +95,9 @@ class AddFormComponent extends Component {
 						name="summary"
 						placeholder="summary..."
 					/>
-					<ButtonWrapper type='submit' className="button-style">Submit Book</ButtonWrapper>
+					<ButtonWrapper type="submit" className="button-style">
+						Submit Book
+					</ButtonWrapper>
 				</FromWrapper>
 				<Footer />
 			</div>
@@ -108,4 +112,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { addBook })(AddFormComponent);
+export default withRouter(connect(mapStateToProps, { addBook })(AddFormComponent));
