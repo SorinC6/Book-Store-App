@@ -2,12 +2,13 @@ import React from 'react';
 import Loader from 'react-loader-spinner';
 import SimpleBook from '../BookCardsComponent/SimpleBook';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import NavigationComponent from '../NavigationComponent/NavigationComponent';
 import HeaderImgHeader from '../HeaderImgComponent/HeaderImg';
 import Footer from '../FooterComponent/Footer';
 import { Spring } from 'react-spring/renderprops';
-import './HomeComponent.css'
+import './HomeComponent.css';
+import AddFormComponent from '../FormCoponent/AddFormComponent';
 
 const ContainerList = styled.div`
 	display: flex;
@@ -51,6 +52,8 @@ class HomeComponent extends React.Component {
 					)}
 				</Spring>
 
+         
+            
 				<footer>
 					<Footer />
 				</footer>

@@ -1,7 +1,7 @@
 import React from 'react';
 import RegisterForm from './RegisterForm';
 import './Register.css';
-import { Spring } from 'react-spring/renderprops';
+// import { Spring } from 'react-spring/renderprops';
 
 const Register = (props) => {
 	//console.log('Register props ', props);

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink, withRouter,Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../store/actions/logoutAction';
 
@@ -94,7 +94,9 @@ class NavigationComponent extends React.Component {
 				<SettingsBtn onClick={this.toggleSettings}>Settings</SettingsBtn>
 				{this.state.settingsHandle && (
 					<Settings className="settings-container">
-						<div>Add Friend</div>
+						<div>
+							<Link to="/add-form">Add Friend</Link>
+						</div>
 						<div onClick={this.logout}>Logout</div>
 					</Settings>
 				)}

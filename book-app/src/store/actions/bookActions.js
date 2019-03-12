@@ -5,6 +5,10 @@ export const FETCHING_BOOKS_START = 'FETCHING_BOOKS_START';
 export const FETCHING_BOOKS_SUCCESS = 'FETCHING_BOOKS_SUCCESS';
 export const FETCHING_BOOKS_FAILURE = 'FETCHING_BOOKS_FAILURE';
 
+export const ADDING_BOOK_START = 'ADDING_BOOK_START';
+export const ADDING_BOOK_SUCCESS = 'ADDING_BOOK_SUCCESS';
+export const ADDING_BOOK_FAILURE = 'ADDING_BOOK_FAILURE';
+
 export const getBooks = () => (dispatch) => {
 	dispatch({ type:FETCHING_BOOKS_START });
 	axiosWithAuth()
@@ -12,3 +16,5 @@ export const getBooks = () => (dispatch) => {
 		.then((res) => dispatch({ type: FETCHING_BOOKS_SUCCESS, payload: res.data }))
 		.catch((err) => dispatch({ type: FETCHING_BOOKS_FAILURE, payload: err.message }));
 };
+
+

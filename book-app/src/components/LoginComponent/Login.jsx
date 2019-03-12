@@ -1,8 +1,7 @@
 import React from 'react';
 import LoginForm from './LoginForm';
-import './Login.css'
-import { Spring } from 'react-spring/renderprops'
-
+import './Login.css';
+// import { Spring } from 'react-spring/renderprops'
 
 const Login = (props) => {
 	//console.log('Register props ', props);
