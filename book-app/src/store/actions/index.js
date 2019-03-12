@@ -13,3 +13,5 @@ export {
 export { FETCHING_BOOKS_START, FETCHING_BOOKS_SUCCESS, FETCHING_BOOKS_FAILURE, getBooks } from './bookActions';
 
 export { LOGOUT } from './logoutAction';
+
+export { ADDING_BOOK_START, ADDING_BOOK_SUCCESS, ADDING_BOOK_FAILURE, addBook } from './bookActions';

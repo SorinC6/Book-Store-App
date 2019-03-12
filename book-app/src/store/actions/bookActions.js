@@ -10,11 +10,17 @@ export const ADDING_BOOK_SUCCESS = 'ADDING_BOOK_SUCCESS';
 export const ADDING_BOOK_FAILURE = 'ADDING_BOOK_FAILURE';
 
 export const getBooks = () => (dispatch) => {
-	dispatch({ type:FETCHING_BOOKS_START });
+	dispatch({ type: FETCHING_BOOKS_START });
 	axiosWithAuth()
 		.get('http://localhost:7111/api/books')
 		.then((res) => dispatch({ type: FETCHING_BOOKS_SUCCESS, payload: res.data }))
 		.catch((err) => dispatch({ type: FETCHING_BOOKS_FAILURE, payload: err.message }));
 };
 
-
+export const addBook = (book) => (dispatch) => {
+	dispatch({ type: ADDING_BOOK_START });
+	axiosWithAuth()
+		.post('http://localhost:7111/api/books', book)
+		.then((res) => dispatch({ type: ADDING_BOOK_SUCCESS, payload: res.data }))
+		.catch((err) => dispatch({ type: ADDING_BOOK_FAILURE, payload: err.message }));
+};

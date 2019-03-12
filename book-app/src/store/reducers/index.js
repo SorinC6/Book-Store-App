@@ -10,7 +10,10 @@ import {
 	FETCHING_BOOKS_START,
 	FETCHING_BOOKS_SUCCESS,
 	FETCHING_BOOKS_FAILURE,
-	LOGOUT
+	LOGOUT,
+	ADDING_BOOK_START,
+	ADDING_BOOK_SUCCESS,
+	ADDING_BOOK_FAILURE
 } from '../actions/index';
 
 //checking with token later
@@ -114,6 +117,26 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				userName: '',
 				error: ''
+			};
+		// ============================ADD BOOK case =================
+		case ADDING_BOOK_START:
+			return {
+				...state,
+				isAddingBook: true,
+				error: ''
+			};
+		case ADDING_BOOK_SUCCESS:
+			return {
+				...state,
+				isAddingBook: false,
+				error: '',
+				books: action.payload
+			};
+		case ADDING_BOOK_FAILURE:
+			return {
+				...state,
+				isAddingBook: false,
+				error: action.payload
 			};
 		default:
 			return state;

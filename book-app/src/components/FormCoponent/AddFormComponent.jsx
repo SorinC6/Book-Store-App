@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addBook } from '../../store/actions/index';
 
-export default class AddFormComponent extends Component {
+class AddFormComponent extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -14,7 +16,7 @@ export default class AddFormComponent extends Component {
 	}
 	handleChanges = (e) => {
 		this.setState({
-			newSmurf: {
+			newBook: {
 				...this.state.newBook,
 				[e.target.name]: e.target.value
 			}
@@ -23,13 +25,13 @@ export default class AddFormComponent extends Component {
 
 	addBook = (e) => {
 		e.preventDefault();
-		//this.props.addSmurf(this.state.newSmurf);
+      console.log(this.state.newBook)
+      this.props.addBook(this.state.newBook)
 	};
 
 	render() {
 		return (
 			<div className="form-container">
-         
 				<h1>Add a book to Collection</h1>
 				<form onSubmit={this.addBook}>
 					<input
@@ -66,3 +68,12 @@ export default class AddFormComponent extends Component {
 		);
 	}
 }
+
+const mapStateToProps = state => {
+   return{
+      isAddingBook:state.isAddingBook,
+      error:state.error
+   }
+}
+
+export default connect(mapStateToProps, { addBook })(AddFormComponent);
