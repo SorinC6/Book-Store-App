@@ -15,3 +15,5 @@ export { FETCHING_BOOKS_START, FETCHING_BOOKS_SUCCESS, FETCHING_BOOKS_FAILURE, g
 export { LOGOUT } from './logoutAction';
 
 export { ADDING_BOOK_START, ADDING_BOOK_SUCCESS, ADDING_BOOK_FAILURE, addBook } from './bookActions';
+
+export { DELETING_BOOK_START, DELETING_BOOK_SUCCESS, DELETING_BOOK_FAILURE, deleteBook } from './bookActions';

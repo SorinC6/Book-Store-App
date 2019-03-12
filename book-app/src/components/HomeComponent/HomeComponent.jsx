@@ -2,12 +2,12 @@ import React from 'react';
 import Loader from 'react-loader-spinner';
 import SimpleBook from '../BookCardsComponent/SimpleBook';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import NavigationComponent from '../NavigationComponent/NavigationComponent';
 import HeaderImgHeader from '../HeaderImgComponent/HeaderImg';
 import Footer from '../FooterComponent/Footer';
-import { Spring } from 'react-spring/renderprops';
 import './HomeComponent.css';
+// import { connect } from 'react-redux';
+// import { deleteBook } from '../../store/actions/index';
 // import AddFormComponent from '../FormCoponent/AddFormComponent';
 
 const ContainerList = styled.div`
@@ -21,6 +21,11 @@ const ContainerList = styled.div`
 `;
 
 class HomeComponent extends React.Component {
+	// deleteBook = (id) => {
+	//    console.log('Finnaly?? ',id)
+	//    this.props.deleteBook(id)
+	// }
+
 	render() {
 		//console.log(this.props);
 		return (
@@ -32,28 +37,16 @@ class HomeComponent extends React.Component {
 					<HeaderImgHeader />
 				</header>
 
-				<Spring from={{ opacity: 0 }} to={{ opacity: 1 }} config={{ duration: 3000 }}>
-					{(props) => (
-						<div style={props}>
-							<ContainerList>
-								{this.props.isFetchingBooks ? (
-									<Loader type="Puff" color="#00BFFF" height="100" width="100" />
-								) : (
-									this.props.books.map((book) => {
-										return (
-											<Link to={`/home/${book.id}`} key={book.id}>
-												<SimpleBook key={book.id} book={book} />
-											</Link>
-										);
-									})
-								)}
-							</ContainerList>
-						</div>
+				<ContainerList>
+					{this.props.isFetchingBooks ? (
+						<Loader type="Puff" color="#00BFFF" height="100" width="100" />
+					) : (
+						this.props.books.map((book) => {
+							return <SimpleBook key={book.id} book={book} {...this.props} />;
+						})
 					)}
-				</Spring>
+				</ContainerList>
 
-         
-            
 				<footer>
 					<Footer />
 				</footer>
@@ -61,5 +54,12 @@ class HomeComponent extends React.Component {
 		);
 	}
 }
+
+// const mapStateToProps = (state) => {
+// 	return {
+// 		isDeleting: state.isDeletingBook,
+// 		error: state.error
+// 	};
+// };
 
 export default HomeComponent;

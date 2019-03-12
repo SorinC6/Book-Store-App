@@ -1,13 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getBooks } from '../../store/actions/index';
+import { getBooks ,deleteBook} from '../../store/actions/index';
 import HomeComponent from '../../components/HomeComponent/HomeComponent';
 import { Spring } from 'react-spring/renderprops';
 
 class HomeView extends React.Component {
 	componentDidMount() {
 		this.props.getBooks();
-	}
+   }
+   
+   deleteBook = (id) => {
+      console.log(id)
+      this.props.deleteBook(id)
+   }
 	render() {
 		//console.log('Books: ', this.props.books);
 		return (
@@ -15,7 +20,7 @@ class HomeView extends React.Component {
 				<Spring from={{ opacity: 0 }} to={{ opacity: 1 }} config={{duration:2000}}>
 					{(props) => (
 						<div style={props}>
-							<HomeComponent books={this.props.books} isFetchingBooks={this.props.isFetchingBooks} />
+							<HomeComponent books={this.props.books} isFetchingBooks={this.props.isFetchingBooks} deleteBook={this.deleteBook}/>
 						</div>
 					)}
 				</Spring>
@@ -31,4 +36,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { getBooks })(HomeView);
+export default connect(mapStateToProps, { getBooks,deleteBook })(HomeView);

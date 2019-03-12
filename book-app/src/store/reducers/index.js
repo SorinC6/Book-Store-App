@@ -13,7 +13,10 @@ import {
 	LOGOUT,
 	ADDING_BOOK_START,
 	ADDING_BOOK_SUCCESS,
-	ADDING_BOOK_FAILURE
+	ADDING_BOOK_FAILURE,
+	DELETING_BOOK_START,
+	DELETING_BOOK_SUCCESS,
+	DELETING_BOOK_FAILURE
 } from '../actions/index';
 
 //checking with token later
@@ -120,6 +123,7 @@ const rootReducer = (state = initialState, action) => {
 			};
 		// ============================ADD BOOK case =================
 		case ADDING_BOOK_START:
+			//console.log('starttt')
 			return {
 				...state,
 				isAddingBook: true,
@@ -136,6 +140,27 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isAddingBook: false,
+				error: action.payload
+			};
+		// =============================DELETE Book case ==================
+		case DELETING_BOOK_START:
+			return {
+				...state,
+				isDeletingBook: true,
+				error: ''
+			};
+		case DELETING_BOOK_SUCCESS:
+			debugger;
+			return {
+				...state,
+				isDeletingBook: false,
+				error: '',
+				books: state.books.filter((bk) => bk.id !== action.payload)
+			};
+		case DELETING_BOOK_FAILURE:
+			return {
+				...state,
+				isDeletingBook: false,
 				error: action.payload
 			};
 		default:

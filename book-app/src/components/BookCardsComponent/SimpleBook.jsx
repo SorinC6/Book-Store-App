@@ -1,21 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 import BookImg from '../../assets/book-cover.png';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 const Container = styled.div`
 	border: 1px solid black;
-	padding: 35px;
+	padding: 20px;
 	width: 240px;
 	margin-top: 20px;
 	border-radius: 10px;
 	background: rgba(45, 82, 77, 0.1);
 
 	& :hover {
-		transform: scale(1.13);
+		transform: scale(1.1);
 		transition: 0.25s ease-in-out;
 		color: purple;
 	}
+
+	
 
 	.entry {
 		margin: 30px 10px;
@@ -36,17 +39,34 @@ const Container = styled.div`
 const SimpleBook = (props) => {
 	const { title, author, id } = props.book;
 
+	const sendCurrentIdToLOcalStorage = () => {
+		localStorage.setItem('CurrentId', id);
+	};
+
+
+
 	return (
-		// <Link to={`home/${id}`}>
+		// <link to={`home/${id}`}>
+
 		<Container>
-			<div className="entry">
-				<img src={BookImg} alt="title" />
-				<h4>{title}</h4>
-				<p>By {author}</p>
+			<div className="delete-btn" onClick={() => props.deleteBook(id)}>
+				X
 			</div>
+			<div className="entry">
+				<Link to={`/home/${id}`} key={id}>
+					<img src={BookImg} alt="title" />
+					<h4>{title}</h4>
+					<p>By {author}</p>
+				</Link>
+			</div>
+
+			<Link to="/update-form" onClick={sendCurrentIdToLOcalStorage}>
+				Update Book
+			</Link>
 		</Container>
-		// </Link>
+		// </link>
 	);
 };
 
-export default SimpleBook;
+
+export default (SimpleBook);

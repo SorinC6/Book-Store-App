@@ -8,7 +8,8 @@ import HomeView from './views/HomeView/HomeView';
 import DetailViewBook from './views/DetailBookView/DetailBookView';
 import NavigationComponent from './components/NavigationComponent/NavigationComponent';
 import Footer from './components/FooterComponent/Footer';
-import AddFormComponent from './components/FormCoponent/AddFormComponent'
+import AddFormComponent from './components/FormCoponent/AddFormComponent';
+import UpdateFormComponent from './components/FormCoponent/UpdateFormComponent';
 
 class App extends Component {
 	render() {
@@ -19,7 +20,7 @@ class App extends Component {
 					<Route exact path="/home" component={HomeView} />
 					<Route exact path="/home/:id" render={(props) => <DetailViewBook {...props} />} />
 					<Route path="/add-form" component={AddFormComponent} />
-
+					<Route path="/update-form" component={UpdateFormComponent} />
 					<Route path="/footer" component={Footer} />
 				</div>
 

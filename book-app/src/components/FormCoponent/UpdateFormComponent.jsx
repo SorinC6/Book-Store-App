@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addBook } from '../../store/actions/index';
+import { getBooks } from '../../store/actions/index';
 import styled from 'styled-components';
 import Navigation from '../NavigationComponent/NavigationComponent';
 import Footer from '../FooterComponent/Footer';
 
-const FromWrapper = styled.form`
+const FromWrapper = styled.div`
 	display: flex;
 	width: 400px;
 	margin: 0 auto;
@@ -32,38 +32,53 @@ const ButtonWrapper = styled.button`
 	padding: 20px;
 `;
 
-class AddFormComponent extends Component {
+const emptyBook = {
+	title: '',
+	author: '',
+	publisher: '',
+	summary: ''
+	// created_at:'',
+	// updated_at:''
+};
+
+class UpdateFromComponent extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			newBook: {
-				title: '',
-				author: '',
-				publisher: '',
-				summary: ''
-			}
+			book: emptyBook
+			//currentId: localStorage.getItem('CurrentId')
 		};
+	}
+
+	componentDidMount() {
+		this.props.getBooks();
+		this.pupulateBookFields();
 	}
 	handleChanges = (e) => {
 		this.setState({
-			newBook: {
-				...this.state.newBook,
+			book: {
+				...this.state.book,
 				[e.target.name]: e.target.value
 			}
 		});
 	};
 
-	addBook = (e) => {
-		e.preventDefault();
-		//console.log(this.state.newBook);
-		this.props.addBook(this.state.newBook);
+	pupulateBookFields = () => {
+		let id = localStorage.getItem('CurrentId');
+		console.log(id);
+		console.log(this.props.books);
+		this.setState({
+			book: this.props.books.filter((book) => book.id === id)
+		});
+		console.log('Why Empty?? ', this.state.book);
+		//this.props.history.push('/home');
 	};
 
 	render() {
 		return (
 			<div className="form-container">
 				<Navigation />
-				<h1 style={{ textAlign: 'center' ,marginTop:'80px'}}>Add a book to Collection</h1>
+				<h1 style={{ textAlign: 'center', marginTop: '80px' }}>Update Book</h1>
 				<FromWrapper onSubmit={this.addBook}>
 					<input
 						className="input-style"
@@ -93,7 +108,7 @@ class AddFormComponent extends Component {
 						name="summary"
 						placeholder="summary..."
 					/>
-					<ButtonWrapper type='submit' className="button-style">Submit Book</ButtonWrapper>
+					<ButtonWrapper className="button-style">Update Book</ButtonWrapper>
 				</FromWrapper>
 				<Footer />
 			</div>
@@ -103,9 +118,10 @@ class AddFormComponent extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		isAddingBook: state.isAddingBook,
-		error: state.error
+		books: state.books
+		// isAddingBook: state.isAddingBook,
+		// error: state.error
 	};
 };
 
-export default connect(mapStateToProps, { addBook })(AddFormComponent);
+export default connect(mapStateToProps, { getBooks })(UpdateFromComponent);

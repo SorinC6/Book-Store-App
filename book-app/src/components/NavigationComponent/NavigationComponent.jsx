@@ -95,7 +95,7 @@ class NavigationComponent extends React.Component {
 				{this.state.settingsHandle && (
 					<Settings className="settings-container">
 						<div>
-							<Link to="/add-form">Add Friend</Link>
+							<Link to="/add-form">Add Book</Link>
 						</div>
 						<div onClick={this.logout}>Logout</div>
 					</Settings>
