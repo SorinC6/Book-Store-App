@@ -3,9 +3,11 @@ import Loader from 'react-loader-spinner';
 import SimpleBook from '../BookCardsComponent/SimpleBook';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import NavigationComponent from '../NavigationComponent/NavigationComponent'
-import HeaderImgHeader from '../HeaderImgComponent/HeaderImg'
-import Footer from '../FooterComponent/Footer'
+import NavigationComponent from '../NavigationComponent/NavigationComponent';
+import HeaderImgHeader from '../HeaderImgComponent/HeaderImg';
+import Footer from '../FooterComponent/Footer';
+import { Spring } from 'react-spring/renderprops';
+import './HomeComponent.css'
 
 const ContainerList = styled.div`
 	display: flex;
@@ -13,38 +15,44 @@ const ContainerList = styled.div`
 	justify-content: space-evenly;
 	padding: 20px 150px;
 	margin-top: 100px;
-   padding-top: 40px;
-   padding-bottom:150px;
+	padding-top: 40px;
+	padding-bottom: 150px;
 `;
 
 class HomeComponent extends React.Component {
 	render() {
 		//console.log(this.props);
 		return (
-			<div style={{backgroundImage:'linear-gradient(#C6FFDD, #FBD786)'}}>
+			<div style={{ backgroundImage: 'linear-gradient(#C6FFDD, #FBD786)' }}>
 				<header>
 					<nav className="nav-container">
 						<NavigationComponent />
 					</nav>
-               <HeaderImgHeader/>
+					<HeaderImgHeader />
 				</header>
 
-				<ContainerList>
-					{this.props.isFetchingBooks ? (
-						<Loader type="Puff" color="#00BFFF" height="100" width="100" />
-					) : (
-						this.props.books.map((book) => {
-							return (
-								<Link to={`/home/${book.id}`} key={book.id}>
-									<SimpleBook key={book.id} book={book} />
-								</Link>
-							);
-						})
+				<Spring from={{ opacity: 0 }} to={{ opacity: 1 }} config={{ duration: 3000 }}>
+					{(props) => (
+						<div style={props}>
+							<ContainerList>
+								{this.props.isFetchingBooks ? (
+									<Loader type="Puff" color="#00BFFF" height="100" width="100" />
+								) : (
+									this.props.books.map((book) => {
+										return (
+											<Link to={`/home/${book.id}`} key={book.id}>
+												<SimpleBook key={book.id} book={book} />
+											</Link>
+										);
+									})
+								)}
+							</ContainerList>
+						</div>
 					)}
-				</ContainerList>
+				</Spring>
 
 				<footer>
-					<Footer/>
+					<Footer />
 				</footer>
 			</div>
 		);

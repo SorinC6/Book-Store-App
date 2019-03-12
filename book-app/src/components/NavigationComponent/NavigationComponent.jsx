@@ -17,14 +17,14 @@ const NavContainer = styled.nav`
 	z-index: 2;
 
 	button {
-		position: absolute;
 		right: 10%;
 		padding: 15px;
+		color: red;
 	}
 `;
 
 const LinkContainer = styled(NavLink)`
-      padding:20px 0px;
+      padding:20px 20px;
       color:white;
       font-weight:bold;
       font-size:20px;
@@ -38,19 +38,69 @@ const LinkContainer = styled(NavLink)`
       }
 `;
 
-const NavigationComponent = (props) => {
-	const logout = () => {
-		props.logout();
-		props.history.push('/');
+const SettingsBtn = styled.div`
+	position: absolute;
+	right: 10%;
+	padding: 15px;
+	color: white;
+`;
+
+const Settings = styled.div`
+	width: 140px;
+	height: 150px;
+	/* border: 1px solid white; */
+	z-index: 20;
+	position: absolute;
+	right: 15%;
+	margin-top: 110px;
+
+	div {
+		margin: 15px;
+		cursor: pointer;
+		border: 1px solid black;
+		padding: 15px;
+		border-radius: 50%;
+		text-align: center;
+
+		& :hover {
+			color: blue;
+		}
+	}
+`;
+
+class NavigationComponent extends React.Component {
+	state = {
+		settingsHandle: false
 	};
-	return (
-		<NavContainer>
-			<LinkContainer to="/home">Home</LinkContainer>
-			<LinkContainer to="/contact">About</LinkContainer>
-			<LinkContainer to="/contact">Contact</LinkContainer>
-			<button onClick={logout}>Logout</button>
-		</NavContainer>
-	);
-};
+
+	logout = () => {
+		this.props.logout();
+		this.props.history.push('/');
+	};
+
+	toggleSettings = () => {
+		this.setState((prevState) => ({
+			settingsHandle: !prevState.settingsHandle
+		}));
+	};
+
+	render() {
+		//console.log(this.state.settingsHandle)
+		return (
+			<NavContainer>
+				<LinkContainer to="/home">Home</LinkContainer>
+				<LinkContainer to="/contact">About</LinkContainer>
+				<LinkContainer to="/contact">Contact</LinkContainer>
+				<SettingsBtn onClick={this.toggleSettings}>Settings</SettingsBtn>
+				{this.state.settingsHandle && (
+					<Settings className="settings-container">
+						<div>Add Friend</div>
+						<div onClick={this.logout}>Logout</div>
+					</Settings>
+				)}
+			</NavContainer>
+		);
+	}
+}
 
 export default withRouter(connect(null, { logout })(NavigationComponent));

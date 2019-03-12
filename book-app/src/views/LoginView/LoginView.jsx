@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { login } from '../../store/actions/index';
 import Login from '../../components/LoginComponent/Login';
+import { Spring } from 'react-spring/renderprops'
+
 
 const LoginView = (props) => {
 	console.log(props);
