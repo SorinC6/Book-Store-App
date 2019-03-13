@@ -49,3 +49,39 @@ meter {
 	border-top: 1px solid #dee6e9;
 	padding-top: 10px;
 }
+
+.book-comments {
+	/* animation: animateMovieinfo 5s; */
+	animation-name: example;
+	animation-duration: 1s;
+   position: relative;
+   background-color: #e6e9de;
+}
+
+@keyframes animateMovieinfo {
+	from {
+		/* opacity: 0; */
+		top: 500;
+	}
+	to {
+		/* opacity: 1; */
+		top: 0;
+	}
+}
+@keyframes example {
+	0% {
+      opacity: 0;
+		left: 0px;
+		top: -1000px;
+	}
+
+	100% {
+      opacity: 1;
+		left: 0px;
+		top: 0px;
+	}
+}
+
+.book-none {
+	display: none;
+}

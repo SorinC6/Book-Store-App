@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink, withRouter,Link } from 'react-router-dom';
+import { NavLink, withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../store/actions/logoutAction';
+import './Nav.css';
 
 const NavContainer = styled.nav`
 	max-width: 100%;
@@ -43,6 +44,12 @@ const SettingsBtn = styled.div`
 	right: 10%;
 	padding: 15px;
 	color: white;
+	cursor: pointer;
+	&:hover {
+		transform: scale(1.4);
+		transition: 0.25s ease-in-out;
+		color: white;
+	}
 `;
 
 const Settings = styled.div`
@@ -51,8 +58,7 @@ const Settings = styled.div`
 	/* border: 1px solid white; */
 	z-index: 20;
 	position: absolute;
-	right: 15%;
-	margin-top: 110px;
+	margin-top: 90px;
 
 	div {
 		margin: 15px;
@@ -85,21 +91,21 @@ class NavigationComponent extends React.Component {
 	};
 
 	render() {
-		//console.log(this.state.settingsHandle)
+		console.log(this.state.settingsHandle);
 		return (
 			<NavContainer>
 				<LinkContainer to="/home">Home</LinkContainer>
 				<LinkContainer to="/contact">About</LinkContainer>
 				<LinkContainer to="/contact">Contact</LinkContainer>
 				<SettingsBtn onClick={this.toggleSettings}>Settings</SettingsBtn>
-				{this.state.settingsHandle && (
+				<div className={this.state.settingsHandle ? 'settings' : 'none'}>
 					<Settings className="settings-container">
 						<div>
 							<Link to="/add-form">Add Book</Link>
 						</div>
 						<div onClick={this.logout}>Logout</div>
 					</Settings>
-				)}
+				</div>
 			</NavContainer>
 		);
 	}

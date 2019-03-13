@@ -63,7 +63,6 @@ const SimpleBook = (props) => {
 				Update Book
 			</Link>
 
-			{/* <Route path="/home/:id" render={(props) => <DetailBook {...props} book={props.book} />} /> */}
 		</Container>
 	);
 };

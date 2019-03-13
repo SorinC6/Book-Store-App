@@ -4,9 +4,7 @@ import './DetailBook.css';
 import NavigationBar from '../NavigationBarComponent/NavigationBar';
 import Navigation from '../NavigationComponent/NavigationComponent';
 import styled from 'styled-components';
-import ReviewList from './ReviewList';
 import Footer from '../FooterComponent/Footer';
-
 
 const CommentDiv = styled.div`
 	border: 1px solid #edebeb;
@@ -14,7 +12,6 @@ const CommentDiv = styled.div`
 	margin: 0 auto;
 	margin-bottom: 150px;
 	border-radius: 10px;
-	background: #e6e9de;
 `;
 
 const Name = styled.div`
@@ -53,7 +50,6 @@ const Form = styled.form`
 
 const CostumDiv = styled.div``;
 
-//const TransitionGroup = React.addons.TransitionGroup;
 
 class DetailBook extends React.Component {
 	constructor(props) {
@@ -68,7 +64,8 @@ class DetailBook extends React.Component {
 			currentPubliser: '',
 			comment: '',
 			totalLikes: '',
-			likeCount: ''
+			likeCount: '',
+			visible: false
 		};
 	}
 
@@ -118,14 +115,20 @@ class DetailBook extends React.Component {
 		this.setState({
 			comment: e.target.value
 		});
-   };
-   deleteReview = (id) => {
-      console.log('delete')
-      this.props.deleteReview(id)
-      console.log(id)
-   }
+	};
+	deleteReview = (id) => {
+		console.log('delete');
+		this.props.deleteReview(id);
+		console.log(id);
+	};
+
+	handleVsible = () => {
+      console.log('click')
+		this.setState({ visible: !this.state.visible });
+	};
 
 	render() {
+      console.log(this.state.visible)
 		return (
 			<div>
 				<div>
@@ -166,18 +169,21 @@ class DetailBook extends React.Component {
 
 				<div>
 					<CommentDiv>
-						<h2 style={{ textAlign: 'center' }}>See the Review for this book</h2>
+						<h2 style={{ textAlign: 'center' }} onClick={this.handleVsible}>See the Review for this book</h2>
 
-						<div>
+						<div className={this.state.visible ? 'book-comments' : 'book-none'}>
 							<CostumDiv>
 								<Name>
 									{this.state.selectedReviews &&
 										this.state.selectedReviews.map((rv) => {
 											return (
-												<div>
+												<div key={rv.id}>
 													<p className="username">Username: {rv.reviewer}</p>
 													<Text>Review: {rv.review} </Text>
-													<i class="far fa-trash-alt" onClick={()=>this.deleteReview(rv.id)}/>
+													<i
+														className="far fa-trash-alt"
+														onClick={() => this.deleteReview(rv.id)}
+													/>
 												</div>
 											);
 										})}
@@ -201,6 +207,7 @@ class DetailBook extends React.Component {
 						</div>
 					</CommentDiv>
 				</div>
+			
 				<Footer />
 			</div>
 		);

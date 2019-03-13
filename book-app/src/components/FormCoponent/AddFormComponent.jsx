@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import Navigation from '../NavigationComponent/NavigationComponent';
 import Footer from '../FooterComponent/Footer';
+import './AddBook.css';
 
 const FromWrapper = styled.form`
 	display: flex;
@@ -66,7 +67,7 @@ class AddFormComponent extends Component {
 			<div className="form-container">
 				<Navigation />
 				<h1 style={{ textAlign: 'center', marginTop: '80px' }}>Add a book to Collection</h1>
-				<FromWrapper onSubmit={this.addBook}>
+				<FromWrapper onSubmit={this.addBook} className="add">
 					<input
 						className="input-style"
 						onChange={this.handleChanges}

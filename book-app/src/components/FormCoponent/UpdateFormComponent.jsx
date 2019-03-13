@@ -4,6 +4,7 @@ import { updateBook, getBooks } from '../../store/actions/index';
 import styled from 'styled-components';
 import Navigation from '../NavigationComponent/NavigationComponent';
 import Footer from '../FooterComponent/Footer';
+import './AddBook.css';
 
 const FromWrapper = styled.div`
 	display: flex;
@@ -72,7 +73,7 @@ class UpdateFromComponent extends Component {
 
 	updateBook = (e) => {
 		e.preventDefault();
-      let id = localStorage.getItem('CurrentId');
+		let id = localStorage.getItem('CurrentId');
 
 		const data = {
 			title: this.state.book.title,
@@ -81,17 +82,17 @@ class UpdateFromComponent extends Component {
 			summary: this.state.book.summary
 		};
 
-      this.props.updateBook(data, id);
-      
-      this.props.history.push('./home')
+		this.props.updateBook(data, id);
+
+		this.props.history.push('./home');
 	};
 
 	render() {
 		return (
 			<div className="form-container">
 				<Navigation />
-				<h1 style={{ textAlign: 'center', marginTop: '80px' }}>Update Bookk</h1>
-				<FromWrapper onSubmit={this.updateBook}>
+				<h1 style={{ textAlign: 'center', marginTop: '80px' }}>Update Book</h1>
+				<FromWrapper onSubmit={this.updateBook} className="update">
 					<input
 						className="input-style"
 						onChange={this.handleChanges}

@@ -6,9 +6,6 @@ import NavigationComponent from '../NavigationComponent/NavigationComponent';
 import HeaderImgHeader from '../HeaderImgComponent/HeaderImg';
 import Footer from '../FooterComponent/Footer';
 import './HomeComponent.css';
-// import { connect } from 'react-redux';
-// import { deleteBook } from '../../store/actions/index';
-// import AddFormComponent from '../FormCoponent/AddFormComponent';
 
 const ContainerList = styled.div`
 	display: flex;
@@ -21,13 +18,10 @@ const ContainerList = styled.div`
 `;
 
 class HomeComponent extends React.Component {
-	// deleteBook = (id) => {
-	//    console.log('Finnaly?? ',id)
-	//    this.props.deleteBook(id)
-	// }
+
 
 	render() {
-		//console.log(this.props);
+
 		return (
 			<div style={{ backgroundImage: 'linear-gradient(#C6FFDD, #FBD786)' }}>
 				<header>

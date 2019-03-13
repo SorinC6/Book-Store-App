@@ -1,6 +1,4 @@
 import axiosWithAuth from '../axios/axios';
-import axios from '../axios/axios';
-import { DELETING_BOOK_FAILURE } from './bookActions';
 
 export const FETCHING_REVIEWS_START = 'FETCHING_REVIEWS_START';
 export const FETCHING_REVIEWS_SUCCESS = 'FETCHING_REVIEWS_SUCCESS';
