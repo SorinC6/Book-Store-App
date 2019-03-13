@@ -68,18 +68,25 @@ class DetailBook extends React.Component {
 			currentTitle: '',
 			currentAuthor: '',
 			currentSummary: '',
+			selectedReviews: [],
 			currentPubliser: '',
 			//commentList: this.props.reviews,
-			comment: '',
-			selectedReviews: []
-      };
+			comment: ''
+		};
+
+		const empty = this.props.reviews.find((rv) => rv.id == this.state.selectedId);
+
+
 	}
 
 	componentDidMount() {
-	
-      debugger;
-      this.props.getReviews();
+		// debugger;
+		this.props.getReviews();
 
+		const selectedR = this.props.reviews.find((rv) => rv.id == this.state.selectedId);
+		console.log();
+
+		//console.log(this.state.selectedReviews);
 
 		this.setState({
 			currentTitle: localStorage.getItem('CurrentTitle'),
@@ -111,9 +118,6 @@ class DetailBook extends React.Component {
 		});
 	};
 	render() {
-		//console.log('State', this.state.reviews);
-      //console.log('Props: ', this.props.reviews);
-      console.log(this.props.reviews)
 		return (
 			<div>
 				<div>
@@ -163,14 +167,17 @@ class DetailBook extends React.Component {
 										className={reviewCount === 0 ? 'far fa-thumbs-up' : 'fas fa-thumbs-up'}
 										onClick={addReviewFeetback}
 									/>
-								</Icons> */}
+                        </Icons> */}
+								{console.log(this.empty)}
 								<Name>
-
-                           {
-                          
-                           }
-									<p>Username: </p>
-									<Text>Review: </Text>
+									{/* {this.state.selectedReviews && this.state.selectedReviews.map((rv) => {
+										return (
+											<div>
+												<p>Username: </p>
+												<Text>Review: </Text>
+											</div>
+										);
+									})} */}
 								</Name>
 
 								<h2 style={{ textAlign: 'center' }}>Add a review</h2>

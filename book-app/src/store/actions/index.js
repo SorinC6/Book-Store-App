@@ -28,3 +28,5 @@ export {
 	getReviews,
 	addReview
 } from './reviewActions';
+
+export { UPDATE_BOOK_START, UPDATE_BOOK_SUCCESS, UPDATE_BOOK_FAILURE, updateBook } from './bookActions';

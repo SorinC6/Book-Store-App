@@ -22,7 +22,10 @@ import {
 	FETCHING_REVIEWS_FAILURE,
 	POSTING_REVIEW_START,
 	POSTING_REVIEW_SUCCESS,
-	POSTING_REVIEW_FAILURE
+	POSTING_REVIEW_FAILURE,
+	UPDATE_BOOK_START,
+	UPDATE_BOOK_SUCCESS,
+	UPDATE_BOOK_FAILURE
 } from '../actions/index';
 
 //checking with token later
@@ -39,6 +42,7 @@ const initialState = {
 	isFetchingReviews: true,
 	isPostingReview: false,
 	isDeletingReview: false,
+	isUpdatingBook: false,
 	reviewsId: '',
 	error: '',
 	userName: user,
@@ -206,6 +210,24 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				isPostingReview: false,
 				error: action.payload
+			};
+		//=============================UPDATE book case
+		case UPDATE_BOOK_START:
+			return {
+				...state,
+				isUpdating: true,
+				error: ''
+			};
+		case UPDATE_BOOK_SUCCESS:
+			return {
+				...state,
+				error: false
+			};
+		case UPDATE_BOOK_FAILURE:
+			return {
+				...state,
+				error: action.payload,
+				isUpdating: false
 			};
 		default:
 			return state;

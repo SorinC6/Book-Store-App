@@ -13,6 +13,10 @@ export const DELETING_BOOK_START = 'DELETING_BOOK_START';
 export const DELETING_BOOK_SUCCESS = 'DELETING_BOOK_SUCCESS';
 export const DELETING_BOOK_FAILURE = 'DELETING_BOOK_FAILURE';
 
+export const UPDATE_BOOK_START = 'UPDATE_BOOK_START';
+export const UPDATE_BOOK_SUCCESS = 'UPDATE_BOOK_SUCCESS';
+export const UPDATE_BOOK_FAILURE = 'UPDATE_BOOK_FAILURE';
+
 export const getBooks = () => (dispatch) => {
 	dispatch({ type: FETCHING_BOOKS_START });
 	axiosWithAuth()
@@ -38,4 +42,12 @@ export const deleteBook = (id) => (dispatch) => {
 			dispatch({ type: DELETING_BOOK_SUCCESS, payload: id });
 		})
 		.catch((err) => dispatch({ type: DELETING_BOOK_FAILURE, payload: err.message }));
+};
+
+export const updateBook = (data,id) => (dispatch) => {
+	dispatch({ type: UPDATE_BOOK_START });
+	axiosWithAuth()
+		.put(`http://localhost:7111/api/books/${id}`,data)
+		.then((res) => dispatch({ type: UPDATE_BOOK_SUCCESS, payload: res.data }))
+		.catch((err) => dispatch({ type: UPDATE_BOOK_FAILURE, payload: err.message }));
 };

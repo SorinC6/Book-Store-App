@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getBooks } from '../../store/actions/index';
+import { updateBook, getBooks } from '../../store/actions/index';
 import styled from 'styled-components';
 import Navigation from '../NavigationComponent/NavigationComponent';
 import Footer from '../FooterComponent/Footer';
@@ -62,8 +62,7 @@ class UpdateFromComponent extends Component {
 
 	pupulateBookFields = () => {
 		let id = localStorage.getItem('CurrentId');
-		console.log(id);
-		console.log(this.props.books);
+
 		this.setState({
 			book: this.props.books.find((book) => book.id == id)
 		});
@@ -71,12 +70,28 @@ class UpdateFromComponent extends Component {
 		//this.props.history.push('/home');
 	};
 
+	updateBook = (e) => {
+		e.preventDefault();
+      let id = localStorage.getItem('CurrentId');
+
+		const data = {
+			title: this.state.book.title,
+			author: this.state.book.author,
+			publisher: this.state.book.publisher,
+			summary: this.state.book.summary
+		};
+
+      this.props.updateBook(data, id);
+      
+      this.props.history.push('./home')
+	};
+
 	render() {
 		return (
 			<div className="form-container">
 				<Navigation />
-				<h1 style={{ textAlign: 'center', marginTop: '80px' }}>Update Book</h1>
-				<FromWrapper onSubmit={this.addBook}>
+				<h1 style={{ textAlign: 'center', marginTop: '80px' }}>Update Bookk</h1>
+				<FromWrapper onSubmit={this.updateBook}>
 					<input
 						className="input-style"
 						onChange={this.handleChanges}
@@ -109,7 +124,9 @@ class UpdateFromComponent extends Component {
 						placeholder="summary..."
 						value={this.state.book && this.state.book.summary}
 					/>
-					<ButtonWrapper className="button-style">Update Book</ButtonWrapper>
+					<ButtonWrapper className="button-style" onClick={this.updateBook}>
+						Update Book
+					</ButtonWrapper>
 				</FromWrapper>
 				<Footer />
 			</div>
@@ -125,4 +142,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { getBooks })(UpdateFromComponent);
+export default connect(mapStateToProps, { updateBook, getBooks })(UpdateFromComponent);
