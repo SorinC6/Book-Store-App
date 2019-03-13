@@ -1,6 +1,4 @@
 .book-info {
-
-
 	animation: animateMovieinfo 1s;
 }
 
@@ -35,15 +33,14 @@
 }
 
 .rating {
-	width: 250px;
+	width: 500px;
 	height: 20px;
 	margin-top: 20px;
 	position: relative;
 }
 
-.fa-film {
-	position: absolute;
-	bottom: 40px;
-	right: 40px;
-	color: #fff;
+meter {
+   width:300px;
 }
+
+

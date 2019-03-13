@@ -5,10 +5,10 @@ import DetailBook from '../../components/DetailBookComponent/DetailBook';
 
 class DetalilBookView extends Component {
 	componentDidMount() {
-      this.props.getBooks();
+		this.props.getBooks();
 	}
 	render() {
-      //console.log(this.props)
+		//console.log(this.props)
 		return (
 			<div>
 				<h1>DetailBook Component</h1>
@@ -17,7 +17,8 @@ class DetalilBookView extends Component {
 					{...this.props}
 					addReview={this.props.addReview}
 					getReviews={this.props.getReviews}
-					reviews={this.props.reviews}
+               reviews={this.props.reviews}
+               reviewsId={this.props.reviewsId}
 				/>
 			</div>
 		);
@@ -28,8 +29,8 @@ const mapStateToProps = (state) => {
 	return {
 		books: state.books,
 		isFetchingBooks: state.isFetchingBooks,
-		isFetchingBooks: state.isFetchingBooks,
-		reviews: state.reviews
+		reviews: state.reviews,
+		reviewsId: state.reviewsId
 	};
 };
 

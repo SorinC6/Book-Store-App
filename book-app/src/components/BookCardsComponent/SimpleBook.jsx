@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import BookImg from '../../assets/book-cover.png';
-import { Link, Route, withRouter } from 'react-router-dom';
-import DetailBook from '../DetailBookComponent/DetailBook';
+import { Link, withRouter } from 'react-router-dom';
 
 const Container = styled.div`
 	border: 1px solid black;

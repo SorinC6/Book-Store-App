@@ -39,8 +39,7 @@ const initialState = {
 	isFetchingReviews: true,
 	isPostingReview: false,
 	isDeletingReview: false,
-	hasLatestBooks: false,
-	hasLatestReviews: false,
+	reviewsId: '',
 	error: '',
 	userName: user,
 	books: [],
@@ -196,10 +195,11 @@ const rootReducer = (state = initialState, action) => {
 				error: ''
 			};
 		case POSTING_REVIEW_SUCCESS:
+			//debugger;
 			return {
 				...state,
 				isPostingReview: false,
-				reviews: action.payload
+				reviewsId: action.payload
 			};
 		case POSTING_REVIEW_FAILURE:
 			return {

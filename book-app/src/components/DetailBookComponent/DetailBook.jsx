@@ -1,8 +1,19 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import './DetailBook.css';
 import NavigationBar from '../NavigationBarComponent/NavigationBar';
 import Navigation from '../NavigationComponent/NavigationComponent';
+import styled from 'styled-components';
+import ReviewList from './ReviewList';
+import Footer from '../FooterComponent/Footer';
+
+const CommentDiv = styled.div`
+	border: 1px solid #edebeb;
+	max-width: 70%;
+	margin: 0 auto;
+	margin-bottom: 150px;
+	border-radius: 10px;
+`;
 
 class DetailBook extends React.Component {
 	constructor(props) {
@@ -11,7 +22,11 @@ class DetailBook extends React.Component {
 			bookSelected: [],
 			selectedId: this.props.match.params.id,
 			currentTitle: '',
-			currentAuthor: ''
+			currentAuthor: '',
+			currentSummary: '',
+			currentPubliser: '',
+			//commentList: this.props.reviews,
+			comment: ''
 		};
 	}
 
@@ -31,28 +46,30 @@ class DetailBook extends React.Component {
 		// 	selectedTitle: title
 		// });
 
-
-		const fakeReview = { review: 'fgfd dfgdfg', rating: 'pgfd dfass gfdf', reviewer: 'first fsd ', books_id: 1 };
+		const fakeReview = {
+			review: 'Testtig',
+			rating: 3,
+			reviewer: 'first fsd ',
+			books_id: this.state.selectedId
+		};
 
       this.props.addReview(fakeReview);
-
-      this.props.getReviews(this.state.selectedId);
-
+      
+      const currentReviewId = this.props.reviewsId
+      
+		console.log('Current ',currentReviewId);
+		this.props.getReviews(currentReviewId[0]);
 
 		this.setState({
 			currentTitle: localStorage.getItem('CurrentTitle'),
-			currentAuthor: localStorage.getItem('CurrentAuthor')
+			currentAuthor: localStorage.getItem('CurrentAuthor'),
+			currentSummary: localStorage.getItem('currentSummary'),
+			currentPubliser: localStorage.getItem('currentPublisher')
 		});
 	}
 
-	setSelectedBook = (selectedB) => {
-		this.setState({
-			bookSelected: selectedB
-		});
-	};
-
 	render() {
-		console.log('State', this.state);
+		//console.log('State', this.state);
 		console.log('Props: ', this.props);
 
 		return (
@@ -81,21 +98,28 @@ class DetailBook extends React.Component {
 
 							<h2>By {this.state.currentAuthor}</h2>
 							<h3>Description</h3>
-							{this.state.bookSelected.summary}
+							{this.state.currentSummary}
+							<h4>Publisher: {this.state.currentPubliser}</h4>
 							<h3>Review RATING</h3>
 
-							<h4>Publisher: {this.state.bookSelected.publisher}</h4>
 							<div className="rating">
-								<meter min="0" max="100" optimum="100" low="40" high="70" value="23" />
-								<p className="rmdb-score">Book Score</p>
+								<meter min="0" max="5" optimum="100" low="40" high="50" value="3" width="200px" />
+								{/* <p className="rmdb-score">Book Score</p> */}
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div>
-					<h1>Review COntent</h1>
+					<CommentDiv>
+						<h2 style={{ textAlign: 'center' }}>See the Review for this book</h2>
+
+						<div>
+							<ReviewList review={this.props.reviews} />
+						</div>
+					</CommentDiv>
 				</div>
+				<Footer />
 			</div>
 		);
 	}
