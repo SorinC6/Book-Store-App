@@ -12,10 +12,10 @@ export const DELETING_REVIEW_START = 'DELETING_REVIEW_START';
 export const DELETING_REVIEW_SUCCESS = 'DELETING_REVIEW_SUCCESS';
 export const DELETING_REVIEW_FAILURE = 'DELETING_REVIEW_FAILURE';
 
-export const getReviews = (id) => (dispatch) => {
+export const getReviews = () => (dispatch) => {
 	dispatch({ type: FETCHING_REVIEWS_START });
 	axiosWithAuth()
-		.get(`http://localhost:7111/api/reviews/${id}`)
+		.get(`http://localhost:7111/api/reviews`)
 		.then((res) => dispatch({ type: FETCHING_REVIEWS_SUCCESS, payload: res.data }))
 		.catch((err) => dispatch({ type: FETCHING_REVIEWS_FAILURE, payload: err.message }));
 };

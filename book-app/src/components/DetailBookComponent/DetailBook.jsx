@@ -15,6 +15,50 @@ const CommentDiv = styled.div`
 	border-radius: 10px;
 `;
 
+const Name = styled.div`
+	max-width: 50%;
+	margin: 0 auto;
+	font-weight: bold;
+	font-size: 15px;
+	padding: 0;
+	margin-left: 4px;
+`;
+
+const Text = styled.span`
+	font-weight: normal;
+	font-size: 15px;
+	margin: 0;
+`;
+
+const Icons = styled.div`
+	div {
+		margin-top: 10px;
+		margin-left: 20px;
+		font-size: 30px;
+	}
+`;
+
+const Form = styled.form`
+	display: flex;
+	align-items: center;
+	height: 60px;
+	border-top: 1px dashed #edebeb;
+
+	input {
+		width: 100%;
+		border: 0;
+		padding: 15px 0;
+		font-size: 14px;
+		outline: none;
+		padding-left: 20px;
+	}
+	i {
+		font-size: 30px;
+		margin-right: 10px;
+	}
+`;
+
+const CostumDiv = styled.div``;
 class DetailBook extends React.Component {
 	constructor(props) {
 		super(props);
@@ -26,39 +70,16 @@ class DetailBook extends React.Component {
 			currentSummary: '',
 			currentPubliser: '',
 			//commentList: this.props.reviews,
-			comment: ''
-		};
+			comment: '',
+			selectedReviews: []
+      };
 	}
 
 	componentDidMount() {
-		// console.log('Booookk ', this.props.books);
-		// const selectedBook = this.props.books.filter((book) => {
-		// 	//console.log(book.id);
-		// 	//console.log(this.state.selectedId);
-		// 	return `${book.id}` === this.state.selectedId;
-		// });
-		// console.log('selected book ', selectedBook);
-		// this.setState({
-		// 	bookSelected: selectedBook
-		// });
-		// const { id, title, author } = this.state.selectedId;
-		// this.setState({
-		// 	selectedTitle: title
-		// });
+	
+      debugger;
+      this.props.getReviews();
 
-		const fakeReview = {
-			review: 'Testtig',
-			rating: 3,
-			reviewer: 'first fsd ',
-			books_id: this.state.selectedId
-		};
-
-      this.props.addReview(fakeReview);
-      
-      const currentReviewId = this.props.reviewsId
-      
-		console.log('Current ',currentReviewId);
-		this.props.getReviews(currentReviewId[0]);
 
 		this.setState({
 			currentTitle: localStorage.getItem('CurrentTitle'),
@@ -68,10 +89,31 @@ class DetailBook extends React.Component {
 		});
 	}
 
-	render() {
-		//console.log('State', this.state);
-		console.log('Props: ', this.props);
+	addReview = () => {
+		const fakeReview = {
+			review: localStorage.getItem('com'),
+			rating: 3,
+			reviewer: localStorage.getItem('userToken'),
+			books_id: this.state.selectedId
+		};
 
+		//this.props.addReview(fakeReview);
+		//this.props.reviews.concat(fakeReview)
+	};
+
+	submitContent = (e) => {
+		e.preventDefault();
+	};
+
+	handleChanges = (e) => {
+		this.setState({
+			comment: e.target.value
+		});
+	};
+	render() {
+		//console.log('State', this.state.reviews);
+      //console.log('Props: ', this.props.reviews);
+      console.log(this.props.reviews)
 		return (
 			<div>
 				<div>
@@ -115,7 +157,36 @@ class DetailBook extends React.Component {
 						<h2 style={{ textAlign: 'center' }}>See the Review for this book</h2>
 
 						<div>
-							<ReviewList review={this.props.reviews} />
+							<CostumDiv>
+								{/* <Icons>
+									<div
+										className={reviewCount === 0 ? 'far fa-thumbs-up' : 'fas fa-thumbs-up'}
+										onClick={addReviewFeetback}
+									/>
+								</Icons> */}
+								<Name>
+
+                           {
+                          
+                           }
+									<p>Username: </p>
+									<Text>Review: </Text>
+								</Name>
+
+								<h2 style={{ textAlign: 'center' }}>Add a review</h2>
+
+								<div>
+									<Form onSubmit={this.submitContent}>
+										<input
+											onChange={this.handleChanges}
+											onSubmit={this.submitContent}
+											name="comment"
+											placeholder="add a review..."
+										/>
+										<i onClick={this.submitContent} className="fas fa-arrow-circle-left" />
+									</Form>
+								</div>
+							</CostumDiv>
 						</div>
 					</CommentDiv>
 				</div>

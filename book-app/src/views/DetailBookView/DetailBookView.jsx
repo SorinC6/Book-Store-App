@@ -5,21 +5,22 @@ import DetailBook from '../../components/DetailBookComponent/DetailBook';
 
 class DetalilBookView extends Component {
 	componentDidMount() {
-		this.props.getBooks();
+      this.props.getBooks();
+      this.props.getReviews();
 	}
 	render() {
-		//console.log(this.props)
 		return (
 			<div>
 				<h1>DetailBook Component</h1>
-				<DetailBook
-					books={this.props.books}
-					{...this.props}
-					addReview={this.props.addReview}
-					getReviews={this.props.getReviews}
-               reviews={this.props.reviews}
-               reviewsId={this.props.reviewsId}
-				/>
+				{this.props.reviews.length > 0 && (
+					<DetailBook
+						{...this.props}
+						addReview={this.props.addReview}
+						getReviews={this.props.getReviews}
+						reviews={this.props.reviews}
+						reviewsId={this.props.reviewsId}
+					/>
+				)}
 			</div>
 		);
 	}

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Name = styled.div`
 	max-width: 50%;
@@ -56,7 +56,7 @@ const Comment = (props) => {
 
 	//console.log('Likes: ', totalLikes);
 
-	const addReview = () => {
+	const addReviewFeetback = () => {
 		console.log(' pressed');
 		if (reviewCount === 0) {
 			setTotalReview(totalReviews + 1);
@@ -67,18 +67,27 @@ const Comment = (props) => {
 		}
 	};
 
+	useEffect(() => {
+		localStorage.setItem('com', comments);
+	});
+
 	const submitContent = (e) => {
-		e.preventDefaul();
+		e.preventDefault();
+		props.addReview();
 	};
 
 	const handleChanges = (e) => {
 		setComments(e.target.value);
 	};
 
+	console.log(comments);
 	return (
 		<CostumDiv>
 			<Icons>
-				<div className={reviewCount === 0 ? 'far fa-thumbs-up' : 'fas fa-thumbs-up'} onClick={addReview} />
+				<div
+					className={reviewCount === 0 ? 'far fa-thumbs-up' : 'fas fa-thumbs-up'}
+					onClick={addReviewFeetback}
+				/>
 			</Icons>
 			<Name>
 				<p>Username: {props.review.reviewer} </p>
@@ -95,7 +104,7 @@ const Comment = (props) => {
 						name="comment"
 						placeholder="add a review..."
 					/>
-					<i className="fas fa-arrow-circle-left" />
+					<i onClick={submitContent} className="fas fa-arrow-circle-left" />
 				</Form>
 			</div>
 		</CostumDiv>

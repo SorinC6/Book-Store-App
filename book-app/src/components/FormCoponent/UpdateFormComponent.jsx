@@ -37,8 +37,6 @@ const emptyBook = {
 	author: '',
 	publisher: '',
 	summary: ''
-	// created_at:'',
-	// updated_at:''
 };
 
 class UpdateFromComponent extends Component {
@@ -46,7 +44,6 @@ class UpdateFromComponent extends Component {
 		super(props);
 		this.state = {
 			book: emptyBook
-			//currentId: localStorage.getItem('CurrentId')
 		};
 	}
 
@@ -68,9 +65,9 @@ class UpdateFromComponent extends Component {
 		console.log(id);
 		console.log(this.props.books);
 		this.setState({
-			book: this.props.books.filter((book) => book.id === id)
+			book: this.props.books.find((book) => book.id == id)
 		});
-		console.log('Why Empty?? ', this.state.book);
+
 		//this.props.history.push('/home');
 	};
 
@@ -86,6 +83,7 @@ class UpdateFromComponent extends Component {
 						type="text"
 						name="title"
 						placeholder="book title..."
+						value={this.state.book && this.state.book.title}
 					/>
 					<input
 						className="input-style"
@@ -93,6 +91,7 @@ class UpdateFromComponent extends Component {
 						type="text"
 						name="author"
 						placeholder="author ..."
+						value={this.state.book && this.state.book.author}
 					/>
 					<input
 						className="input-style"
@@ -100,6 +99,7 @@ class UpdateFromComponent extends Component {
 						type="text"
 						name="publisher"
 						placeholder="publiser..."
+						value={this.state.book && this.state.book.publisher}
 					/>
 					<input
 						className="input-style"
@@ -107,6 +107,7 @@ class UpdateFromComponent extends Component {
 						type="text"
 						name="summary"
 						placeholder="summary..."
+						value={this.state.book && this.state.book.summary}
 					/>
 					<ButtonWrapper className="button-style">Update Book</ButtonWrapper>
 				</FromWrapper>
