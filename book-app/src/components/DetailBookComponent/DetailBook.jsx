@@ -7,16 +7,17 @@ import styled from 'styled-components';
 import ReviewList from './ReviewList';
 import Footer from '../FooterComponent/Footer';
 
+
 const CommentDiv = styled.div`
 	border: 1px solid #edebeb;
 	max-width: 70%;
 	margin: 0 auto;
 	margin-bottom: 150px;
 	border-radius: 10px;
+	background: #e6e9de;
 `;
 
 const Name = styled.div`
-	max-width: 50%;
 	margin: 0 auto;
 	font-weight: bold;
 	font-size: 15px;
@@ -28,14 +29,6 @@ const Text = styled.span`
 	font-weight: normal;
 	font-size: 15px;
 	margin: 0;
-`;
-
-const Icons = styled.div`
-	div {
-		margin-top: 10px;
-		margin-left: 20px;
-		font-size: 30px;
-	}
 `;
 
 const Form = styled.form`
@@ -59,6 +52,9 @@ const Form = styled.form`
 `;
 
 const CostumDiv = styled.div``;
+
+//const TransitionGroup = React.addons.TransitionGroup;
+
 class DetailBook extends React.Component {
 	constructor(props) {
 		super(props);
@@ -70,23 +66,28 @@ class DetailBook extends React.Component {
 			currentSummary: '',
 			selectedReviews: [],
 			currentPubliser: '',
-			//commentList: this.props.reviews,
-			comment: ''
+			comment: '',
+			totalLikes: '',
+			likeCount: ''
 		};
-
-		const empty = this.props.reviews.find((rv) => rv.id == this.state.selectedId);
-
-
 	}
 
 	componentDidMount() {
-		// debugger;
 		this.props.getReviews();
+		console.log(this.props.reviews);
 
-		const selectedR = this.props.reviews.find((rv) => rv.id == this.state.selectedId);
-		console.log();
+		const getSelectedReview = this.props.reviews.filter((rv) => {
+			//console.log(rv)
+			// console.log('Review Id' ,rv.books_id);
+			// console.log('Current ID',this.state.selectedId)
+			return rv.books_id == this.state.selectedId;
+		});
 
-		//console.log(this.state.selectedReviews);
+		console.log('Reviews ', getSelectedReview); //working - getting the object
+
+		this.setState({
+			selectedReviews: getSelectedReview
+		});
 
 		this.setState({
 			currentTitle: localStorage.getItem('CurrentTitle'),
@@ -96,27 +97,34 @@ class DetailBook extends React.Component {
 		});
 	}
 
-	addReview = () => {
+	addReview = (e) => {
+		e.preventDefault();
 		const fakeReview = {
-			review: localStorage.getItem('com'),
+			review: this.state.comment,
 			rating: 3,
 			reviewer: localStorage.getItem('userToken'),
 			books_id: this.state.selectedId
 		};
 
-		//this.props.addReview(fakeReview);
-		//this.props.reviews.concat(fakeReview)
-	};
+		console.log(fakeReview);
+		this.props.addReview(fakeReview);
 
-	submitContent = (e) => {
-		e.preventDefault();
+		this.setState({
+			comment: ''
+		});
 	};
 
 	handleChanges = (e) => {
 		this.setState({
 			comment: e.target.value
 		});
-	};
+   };
+   deleteReview = (id) => {
+      console.log('delete')
+      this.props.deleteReview(id)
+      console.log(id)
+   }
+
 	render() {
 		return (
 			<div>
@@ -162,35 +170,31 @@ class DetailBook extends React.Component {
 
 						<div>
 							<CostumDiv>
-								{/* <Icons>
-									<div
-										className={reviewCount === 0 ? 'far fa-thumbs-up' : 'fas fa-thumbs-up'}
-										onClick={addReviewFeetback}
-									/>
-                        </Icons> */}
-								{console.log(this.empty)}
 								<Name>
-									{/* {this.state.selectedReviews && this.state.selectedReviews.map((rv) => {
-										return (
-											<div>
-												<p>Username: </p>
-												<Text>Review: </Text>
-											</div>
-										);
-									})} */}
+									{this.state.selectedReviews &&
+										this.state.selectedReviews.map((rv) => {
+											return (
+												<div>
+													<p className="username">Username: {rv.reviewer}</p>
+													<Text>Review: {rv.review} </Text>
+													<i class="far fa-trash-alt" onClick={()=>this.deleteReview(rv.id)}/>
+												</div>
+											);
+										})}
 								</Name>
 
-								<h2 style={{ textAlign: 'center' }}>Add a review</h2>
+								<h2 style={{ textAlign: 'center' }} />
 
 								<div>
-									<Form onSubmit={this.submitContent}>
+									<Form onSubmit={this.addReview}>
 										<input
 											onChange={this.handleChanges}
-											onSubmit={this.submitContent}
+											onSubmit={this.addReview}
 											name="comment"
 											placeholder="add a review..."
+											value={this.state.comment}
 										/>
-										<i onClick={this.submitContent} className="fas fa-arrow-circle-left" />
+										<i onClick={this.addReview} className="fas fa-arrow-circle-left" />
 									</Form>
 								</div>
 							</CostumDiv>

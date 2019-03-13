@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getBooks, addReview, getReviews } from '../../store/actions/index';
+import { getBooks, addReview, getReviews, deleteReview } from '../../store/actions/index';
 import DetailBook from '../../components/DetailBookComponent/DetailBook';
 
 class DetalilBookView extends Component {
 	componentDidMount() {
-      this.props.getBooks();
-      this.props.getReviews();
+		this.props.getBooks();
+		this.props.getReviews();
 	}
 	render() {
+		console.log(this.props);
 		return (
 			<div>
 				<h1>DetailBook Component</h1>
@@ -19,6 +20,7 @@ class DetalilBookView extends Component {
 						getReviews={this.props.getReviews}
 						reviews={this.props.reviews}
 						reviewsId={this.props.reviewsId}
+						deleteReview={this.props.deleteReview}
 					/>
 				)}
 			</div>
@@ -35,4 +37,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { getBooks, addReview, getReviews })(DetalilBookView);
+export default connect(mapStateToProps, { getBooks, addReview, getReviews, deleteReview })(DetalilBookView);

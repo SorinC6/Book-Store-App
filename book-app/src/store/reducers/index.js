@@ -25,7 +25,10 @@ import {
 	POSTING_REVIEW_FAILURE,
 	UPDATE_BOOK_START,
 	UPDATE_BOOK_SUCCESS,
-	UPDATE_BOOK_FAILURE
+	UPDATE_BOOK_FAILURE,
+	DELETING_REVIEW_START,
+	DELETING_REVIEW_FAILURE,
+	DELETING_REVIEW_SUCCESS
 } from '../actions/index';
 
 //checking with token later
@@ -203,7 +206,7 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isPostingReview: false,
-				reviewsId: action.payload
+				reviews: action.payload
 			};
 		case POSTING_REVIEW_FAILURE:
 			return {
@@ -228,6 +231,28 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				error: action.payload,
 				isUpdating: false
+			};
+		//===============================DELETE REVIEW case ==================
+		case DELETING_REVIEW_START:
+			return {
+				...state,
+				isDeletingReview: true,
+				error: ''
+			};
+		case DELETING_REVIEW_SUCCESS:
+			return {
+				...state,
+				isDeletingReview: false,
+				reviews: state.reviews((rv) => rv.id !== action.payload),
+
+				error: ''
+			};
+		case DELETING_REVIEW_FAILURE:
+			console.log(action.payload);
+			return {
+				...state,
+				error: action.payload,
+				isDeletingReview: false
 			};
 		default:
 			return state;

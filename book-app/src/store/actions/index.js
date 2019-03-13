@@ -30,3 +30,5 @@ export {
 } from './reviewActions';
 
 export { UPDATE_BOOK_START, UPDATE_BOOK_SUCCESS, UPDATE_BOOK_FAILURE, updateBook } from './bookActions';
+
+export { DELETING_REVIEW_START, DELETING_REVIEW_SUCCESS, DELETING_REVIEW_FAILURE, deleteReview } from './reviewActions';
