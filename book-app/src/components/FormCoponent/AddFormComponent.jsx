@@ -13,7 +13,7 @@ const FromWrapper = styled.form`
 	margin: 0 auto;
 	flex-direction: column;
 	justify-content: space-evenly;
-	padding: 0 20px;
+   padding: 0 20px;
 
 	input {
 		background-color: #fff;
@@ -64,7 +64,7 @@ class AddFormComponent extends Component {
 
 	render() {
 		return (
-			<div className="form-container">
+			<div className="form-container background">
 				<Navigation />
 				<h1 style={{ textAlign: 'center', marginTop: '80px' }}>Add a book to Collection</h1>
 				<FromWrapper onSubmit={this.addBook} className="add">

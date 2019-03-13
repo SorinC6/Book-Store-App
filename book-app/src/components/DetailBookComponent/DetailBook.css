@@ -21,6 +21,16 @@
 	background: rgba(87, 57, 57, 0.7);
 }
 
+@media (max-width:500px){
+   .book-content{
+      flex-direction: column
+   }
+
+   .text{
+      text-align: center;
+   }
+}
+
 .text {
 	font-family: Arial, Helvetica, sans-serif;
 	height: 100%;

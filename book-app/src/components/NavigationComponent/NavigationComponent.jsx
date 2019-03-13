@@ -94,10 +94,12 @@ class NavigationComponent extends React.Component {
 		console.log(this.state.settingsHandle);
 		return (
 			<NavContainer>
+				<button>Menu</button>
 				<LinkContainer to="/home">Home</LinkContainer>
 				<LinkContainer to="/contact">About</LinkContainer>
 				<LinkContainer to="/contact">Contact</LinkContainer>
 				<SettingsBtn onClick={this.toggleSettings}>Settings</SettingsBtn>
+
 				<div className={this.state.settingsHandle ? 'settings' : 'none'}>
 					<Settings className="settings-container">
 						<div>

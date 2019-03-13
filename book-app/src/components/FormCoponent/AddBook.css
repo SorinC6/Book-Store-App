@@ -23,14 +23,22 @@
 
 @keyframes test {
 	0% {
-      opacity: 0;
+		opacity: 0;
 		left: 0px;
 		top: -1000px;
 	}
 
 	100% {
-      opacity: 1;
+		opacity: 1;
 		left: 0px;
 		top: 0px;
 	}
+}
+
+.background {
+   margin-top:0;
+   height: 100%;
+}
+.form-container {
+   height: 100%;
 }
