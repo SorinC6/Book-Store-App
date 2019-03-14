@@ -48,6 +48,9 @@ export const updateBook = (data, id) => (dispatch) => {
 	dispatch({ type: UPDATE_BOOK_START });
 	axiosWithAuth()
 		.put(`http://localhost:7111/api/books/${id}`, data)
-		.then((res) => dispatch({ type: UPDATE_BOOK_SUCCESS, payload: data }))
+		.then((res) => {
+			dispatch({ type: UPDATE_BOOK_SUCCESS, payload: data });
+			getBooks();
+		})
 		.catch((err) => dispatch({ type: UPDATE_BOOK_FAILURE, payload: err.message }));
 };

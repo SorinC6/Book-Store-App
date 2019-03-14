@@ -29,7 +29,7 @@ const StartPageView = (props) => {
 			</CostumDiv>
 
 			<div>
-				<Confetti width="1000" height="1000" style={{zIndex:'1', marginTop:'150px'}}/>
+				<Confetti width="1500" height="1000" style={{zIndex:'1', marginTop:'150px'}}/>
 			</div>
 		</div>
 	);

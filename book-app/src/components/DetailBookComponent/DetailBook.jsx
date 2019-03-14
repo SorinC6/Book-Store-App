@@ -29,6 +29,13 @@ const Name = styled.div`
 	font-size: 15px;
 	padding: 0;
 	margin-left: 4px;
+
+	span {
+		padding-left: 10px;
+		width: 200px;
+	}
+	div {
+	}
 `;
 
 const Text = styled.span`
@@ -156,7 +163,7 @@ class DetailBook extends React.Component {
 
 							<h2>By {this.state.currentAuthor}</h2>
 							<h3>Description</h3>
-							{this.state.currentSummary}
+							<p className="description">{this.state.currentSummary}</p>
 							<h4>Publisher: {this.state.currentPubliser}</h4>
 							<h3>Review RATING</h3>
 
@@ -183,12 +190,20 @@ class DetailBook extends React.Component {
 										.map((rv) => {
 											return (
 												<div key={rv.id}>
-													<p className="username">Username: {rv.reviewer}</p>
-													<Text>Review: {rv.review} </Text>
-													<i
-														className="far fa-trash-alt icon"
-														onClick={() => this.deleteReview(rv.id)}
-													/>
+													<p className="username">
+														Username: {rv.reviewer}
+														<span>
+															{' '}
+															<i
+																className="far fa-trash-alt icon"
+																onClick={() => this.deleteReview(rv.id)}
+															/>
+														</span>
+													</p>
+
+													<Text>
+														Review: <span>{rv.review}</span>{' '}
+													</Text>
 												</div>
 											);
 										})}

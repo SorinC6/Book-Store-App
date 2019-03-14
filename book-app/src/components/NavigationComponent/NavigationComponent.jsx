@@ -87,12 +87,14 @@ const Settings = styled.div`
 		padding: 15px;
 		border-radius: 50%;
 		text-align: center;
-      right: 0;
-      background:black;
-      color:white;
+		right: 0;
+		background: black;
+		color: white;
 
 		& :hover {
-			color: blue;
+			transform: scale(1.05);
+			transition: 0.25s ease-in-out;
+			color: purple;
 		}
 	}
 `;
@@ -144,7 +146,9 @@ class NavigationComponent extends React.Component {
 				<div className={this.state.settingsHandle ? 'settings' : 'none'}>
 					<Settings className="settings-container">
 						<div>
-							<Link to="/add-form">Add Book</Link>
+							<Link to="/add-form" style={{ color: 'white' }}>
+								Add Book
+							</Link>
 						</div>
 						<div onClick={this.logout}>Logout</div>
 					</Settings>

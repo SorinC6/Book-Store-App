@@ -1,5 +1,11 @@
 .book-info {
-	animation: animateMovieinfo 1s;
+   animation: animateMovieinfo 1s;
+   width:90%;
+   margin:0 auto;
+}
+
+.description {
+   line-height: 1.2;
 }
 
 @keyframes animateMovieinfo {
@@ -10,9 +16,11 @@
 		opacity: 1;
 	}
 }
-h1,h2,h3,h4 {
-   font-family: 'EB Garamond', serif;
-
+h1,
+h2,
+h3,
+h4 {
+	font-family: 'EB Garamond', serif;
 }
 .book-content {
 	display: flex;
@@ -32,6 +40,30 @@ h1,h2,h3,h4 {
 
 	.text {
 		text-align: center;
+	}
+}
+
+@media (max-width: 650px) {
+	.book-content {
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.text {
+		text-align: center;
+	}
+
+	h1 {
+		font-size: 24px;
+	}
+
+	h2 {
+		font-size: 20px;
+	}
+	.description {
+		width: 250px;
+		align-items: center;
+		margin-left: 120px;
 	}
 }
 
@@ -59,9 +91,8 @@ meter {
 
 @media (max-width: 500px) {
 	meter {
-      width: 100px;
-   }
-   
+		width: 100px;
+	}
 }
 
 .username {
@@ -108,7 +139,7 @@ meter {
 }
 
 .icon {
-	position: absolute;
+   position: absolute;
 	right: 10%;
 	font-size: 20px;
 }

@@ -8,16 +8,14 @@ const Container = styled.div`
 	padding: 20px;
 	width: 240px;
 	margin-top: 20px;
-	border-radius: 10px;
 	background: rgba(45, 82, 77, 0.1);
 	text-align: center;
 	margin: 2px;
 	margin-bottom: 20px;
 
-	& :hover {
-		transform: scale(1.05);
-		transition: 0.25s ease-in-out;
-		color: purple;
+	.link {
+		font-weight: bold;
+		color: black;
 	}
 
 	.entry {
@@ -30,8 +28,8 @@ const Container = styled.div`
 		text-decoration: none;
 		font-family: 'Hind', sans-serif;
 		color: blue;
-      background-image: linear-gradient(-90deg, green, white);
-      border-radius:10%;
+		background: linear-gradient(to bottom, #33ccff 0%, #ffcc66 100%);
+		border-radius: 10%;
 
 		img {
 			width: 200px;
@@ -66,7 +64,7 @@ const SimpleBook = (props) => {
 				</Link>
 			</div>
 
-			<Link to="/update-form" onClick={sendCurrentIdToLOcalStorage}>
+			<Link to="/update-form" onClick={sendCurrentIdToLOcalStorage} className="link">
 				Update Book
 			</Link>
 		</Container>
