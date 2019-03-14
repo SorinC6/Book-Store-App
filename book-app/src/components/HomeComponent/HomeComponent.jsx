@@ -18,10 +18,7 @@ const ContainerList = styled.div`
 `;
 
 class HomeComponent extends React.Component {
-
-
 	render() {
-
 		return (
 			<div style={{ backgroundImage: 'linear-gradient(#C6FFDD, #FBD786)' }}>
 				<header>

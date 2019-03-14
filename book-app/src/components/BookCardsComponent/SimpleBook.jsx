@@ -9,8 +9,8 @@ const Container = styled.div`
 	width: 240px;
 	margin-top: 20px;
 	border-radius: 10px;
-   background: rgba(45, 82, 77, 0.1);
-   text-align:center;
+	background: rgba(45, 82, 77, 0.1);
+	text-align: center;
 
 	& :hover {
 		transform: scale(1.1);
@@ -63,7 +63,6 @@ const SimpleBook = (props) => {
 			<Link to="/update-form" onClick={sendCurrentIdToLOcalStorage}>
 				Update Book
 			</Link>
-
 		</Container>
 	);
 };

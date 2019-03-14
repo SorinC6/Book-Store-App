@@ -12,6 +12,15 @@ const CommentDiv = styled.div`
 	margin: 0 auto;
 	margin-bottom: 150px;
 	border-radius: 10px;
+
+	h2 {
+		padding: 10px;
+		cursor: pointer;
+		&:hover {
+			background-color: black;
+			color: white;
+		}
+	}
 `;
 
 const Name = styled.div`
@@ -33,6 +42,14 @@ const Form = styled.form`
 	align-items: center;
 	height: 60px;
 	border-top: 1px dashed #edebeb;
+	position: relative;
+	input {
+		border-radius: 10px;
+
+		&:focus {
+			background-color: #f6efef;
+		}
+	}
 
 	input {
 		width: 100%;
@@ -45,11 +62,11 @@ const Form = styled.form`
 	i {
 		font-size: 30px;
 		margin-right: 10px;
+		right: 0;
 	}
 `;
 
 const CostumDiv = styled.div``;
-
 
 class DetailBook extends React.Component {
 	constructor(props) {
@@ -71,20 +88,8 @@ class DetailBook extends React.Component {
 
 	componentDidMount() {
 		this.props.getReviews();
-		console.log(this.props.reviews);
 
-		const getSelectedReview = this.props.reviews.filter((rv) => {
-			//console.log(rv)
-			// console.log('Review Id' ,rv.books_id);
-			// console.log('Current ID',this.state.selectedId)
-			return rv.books_id == this.state.selectedId;
-		});
-
-		console.log('Reviews ', getSelectedReview); //working - getting the object
-
-		this.setState({
-			selectedReviews: getSelectedReview
-		});
+		this.filterReviews();
 
 		this.setState({
 			currentTitle: localStorage.getItem('CurrentTitle'),
@@ -94,17 +99,28 @@ class DetailBook extends React.Component {
 		});
 	}
 
+	filterReviews = () => {
+		const getSelectedReview = this.props.reviews.filter((rv) => {
+			return rv.books_id == this.state.selectedId;
+		});
+
+		this.setState({
+			selectedReviews: getSelectedReview
+		});
+		this.props.getReviews();
+	};
+
 	addReview = (e) => {
 		e.preventDefault();
-		const fakeReview = {
+		const review = {
 			review: this.state.comment,
 			rating: 3,
 			reviewer: localStorage.getItem('userToken'),
 			books_id: this.state.selectedId
 		};
 
-		console.log(fakeReview);
-		this.props.addReview(fakeReview);
+		!this.props.isPostingReview && this.props.addReview(review);
+		this.filterReviews();
 
 		this.setState({
 			comment: ''
@@ -123,12 +139,12 @@ class DetailBook extends React.Component {
 	};
 
 	handleVsible = () => {
-      console.log('click')
+		console.log('click');
 		this.setState({ visible: !this.state.visible });
 	};
 
 	render() {
-      console.log(this.state.visible)
+		console.log(this.state.visible);
 		return (
 			<div>
 				<div>
@@ -169,7 +185,9 @@ class DetailBook extends React.Component {
 
 				<div>
 					<CommentDiv>
-						<h2 style={{ textAlign: 'center' }} onClick={this.handleVsible}>See the Review for this book</h2>
+						<h2 style={{ textAlign: 'center' }} onClick={this.handleVsible}>
+							See the Review for this book
+						</h2>
 
 						<div className={this.state.visible ? 'book-comments' : 'book-none'}>
 							<CostumDiv>
@@ -181,7 +199,7 @@ class DetailBook extends React.Component {
 													<p className="username">Username: {rv.reviewer}</p>
 													<Text>Review: {rv.review} </Text>
 													<i
-														className="far fa-trash-alt"
+														className="far fa-trash-alt icon"
 														onClick={() => this.deleteReview(rv.id)}
 													/>
 												</div>
@@ -207,7 +225,7 @@ class DetailBook extends React.Component {
 						</div>
 					</CommentDiv>
 				</div>
-			
+
 				<Footer />
 			</div>
 		);

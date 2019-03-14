@@ -24,6 +24,7 @@ class HomeView extends React.Component {
 								books={this.props.books}
 								isFetchingBooks={this.props.isFetchingBooks}
 								deleteBook={this.deleteBook}
+								getBooks={this.props.getBooks}
 							/>
 						</div>
 					)}

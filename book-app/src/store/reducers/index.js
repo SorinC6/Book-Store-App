@@ -224,7 +224,9 @@ const rootReducer = (state = initialState, action) => {
 		case UPDATE_BOOK_SUCCESS:
 			return {
 				...state,
-				error: false
+				isUpdating: false,
+				//
+				error: ''
 			};
 		case UPDATE_BOOK_FAILURE:
 			return {

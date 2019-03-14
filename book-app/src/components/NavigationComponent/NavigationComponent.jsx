@@ -4,6 +4,7 @@ import { NavLink, withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../store/actions/logoutAction';
 import './Nav.css';
+import HambPic from '../../assets/hamb.png';
 
 const NavContainer = styled.nav`
 	max-width: 100%;
@@ -16,6 +17,20 @@ const NavContainer = styled.nav`
 	top: 0;
 	width: 100%;
 	z-index: 2;
+	position: relative;
+
+	img {
+		width: 50px;
+		color: white;
+		background-color: white;
+		position: absolute;
+		left: 1%;
+		border-radius: 50%;
+		display: none;
+		@media (max-width: 500px) {
+			display: block;
+		}
+	}
 
 	button {
 		right: 10%;
@@ -50,6 +65,10 @@ const SettingsBtn = styled.div`
 		transition: 0.25s ease-in-out;
 		color: white;
 	}
+
+	@media (max-width: 500px) {
+		display: none;
+	}
 `;
 
 const Settings = styled.div`
@@ -76,7 +95,8 @@ const Settings = styled.div`
 
 class NavigationComponent extends React.Component {
 	state = {
-		settingsHandle: false
+		settingsHandle: false,
+		showMenu: false
 	};
 
 	logout = () => {
@@ -90,11 +110,24 @@ class NavigationComponent extends React.Component {
 		}));
 	};
 
+	showMenu = () => {
+		this.setState({
+			showMenu: !this.state.showMenu
+		});
+	};
+
 	render() {
-		console.log(this.state.settingsHandle);
+		//console.log(this.state.showMenu);
 		return (
 			<NavContainer>
-				<button>Menu</button>
+				<img src={HambPic} alt="hamburger-image" onClick={this.showMenu} />
+				<div className={this.state.showMenu ? 'menu' : 'display-none'}>
+					<LinkContainer to="/home">Home</LinkContainer>
+					<LinkContainer to="/contact">About</LinkContainer>
+					<LinkContainer to="/contact">Contact</LinkContainer>
+					<Link to="/add-form">Add Book</Link>
+					<div onClick={this.logout}>Logout</div>
+				</div>
 				<LinkContainer to="/home">Home</LinkContainer>
 				<LinkContainer to="/contact">About</LinkContainer>
 				<LinkContainer to="/contact">Contact</LinkContainer>

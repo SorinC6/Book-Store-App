@@ -12,7 +12,6 @@ class DetalilBookView extends Component {
 		console.log(this.props);
 		return (
 			<div>
-				<h1>DetailBook Component</h1>
 				{this.props.reviews.length > 0 && (
 					<DetailBook
 						{...this.props}
@@ -21,6 +20,7 @@ class DetalilBookView extends Component {
 						reviews={this.props.reviews}
 						reviewsId={this.props.reviewsId}
 						deleteReview={this.props.deleteReview}
+						isPostingReview={this.props.isPostingReview}
 					/>
 				)}
 			</div>
@@ -33,7 +33,8 @@ const mapStateToProps = (state) => {
 		books: state.books,
 		isFetchingBooks: state.isFetchingBooks,
 		reviews: state.reviews,
-		reviewsId: state.reviewsId
+		reviewsId: state.reviewsId,
+		isPostingReview: state.isPostingReview
 	};
 };
 

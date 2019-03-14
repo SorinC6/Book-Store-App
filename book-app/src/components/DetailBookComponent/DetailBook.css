@@ -21,14 +21,14 @@
 	background: rgba(87, 57, 57, 0.7);
 }
 
-@media (max-width:500px){
-   .book-content{
-      flex-direction: column
-   }
+@media (max-width: 500px) {
+	.book-content {
+		flex-direction: column;
+	}
 
-   .text{
-      text-align: center;
-   }
+	.text {
+		text-align: center;
+	}
 }
 
 .text {
@@ -64,8 +64,8 @@ meter {
 	/* animation: animateMovieinfo 5s; */
 	animation-name: example;
 	animation-duration: 1s;
-   position: relative;
-   background-color: #e6e9de;
+	position: relative;
+	background-color: #e6e9de;
 }
 
 @keyframes animateMovieinfo {
@@ -80,13 +80,13 @@ meter {
 }
 @keyframes example {
 	0% {
-      opacity: 0;
+		opacity: 0;
 		left: 0px;
 		top: -1000px;
 	}
 
 	100% {
-      opacity: 1;
+		opacity: 1;
 		left: 0px;
 		top: 0px;
 	}
@@ -94,4 +94,10 @@ meter {
 
 .book-none {
 	display: none;
+}
+
+.icon {
+	position: absolute;
+   right: 10%;
+   font-size:20px;
 }

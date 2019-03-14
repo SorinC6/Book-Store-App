@@ -3,8 +3,7 @@
 	animation-name: example;
 	animation-duration: 1s;
 	position: relative;
-   background-color: #e6e9de;
-
+	background-color: #e6e9de;
 }
 
 @keyframes animateMovieinfo {
@@ -31,7 +30,28 @@
 	}
 }
 
-
 .none {
+	display: none;
+}
+
+.menu {
+	display: none;
+}
+@media (max-width: 500px) {
+	.menu {
+		position: absolute;
+		width: 300px;
+		height: 500px;
+		border: 1px solid black;
+		left: 0;
+		top: 100%;
+		background-color: rgb(255, 0, 0);
+		opacity: 0.6;
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.display-none {
 	display: none;
 }
