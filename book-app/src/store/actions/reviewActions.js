@@ -25,7 +25,10 @@ export const addReview = (data) => (dispatch) => {
 	//console.log('data send',data)
 	axiosWithAuth()
 		.post('http://localhost:7111/api/reviews', data)
-		.then((res) => dispatch({ type: POSTING_REVIEW_SUCCESS, payload: res.data }))
+		.then((res) => {
+			dispatch({ type: POSTING_REVIEW_SUCCESS, payload: res.data });
+			dispatch(getReviews());
+		})
 		.catch((err) => dispatch({ type: POSTING_REVIEW_FAILURE, payload: err.message }));
 };
 

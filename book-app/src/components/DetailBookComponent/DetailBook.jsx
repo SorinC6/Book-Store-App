@@ -89,8 +89,6 @@ class DetailBook extends React.Component {
 	componentDidMount() {
 		this.props.getReviews();
 
-		this.filterReviews();
-
 		this.setState({
 			currentTitle: localStorage.getItem('CurrentTitle'),
 			currentAuthor: localStorage.getItem('CurrentAuthor'),
@@ -98,17 +96,6 @@ class DetailBook extends React.Component {
 			currentPubliser: localStorage.getItem('currentPublisher')
 		});
 	}
-
-	filterReviews = () => {
-		const getSelectedReview = this.props.reviews.filter((rv) => {
-			return rv.books_id == this.state.selectedId;
-		});
-
-		this.setState({
-			selectedReviews: getSelectedReview
-		});
-		this.props.getReviews();
-	};
 
 	addReview = (e) => {
 		e.preventDefault();
@@ -119,10 +106,7 @@ class DetailBook extends React.Component {
 			books_id: this.state.selectedId
 		};
 
-		console.log(review);
-
-		!this.props.isPostingReview && this.props.addReview(review);
-		this.filterReviews();
+		this.props.addReview(review);
 
 		this.setState({
 			comment: ''
@@ -145,7 +129,7 @@ class DetailBook extends React.Component {
 	};
 
 	render() {
-		//console.log(this.state.visible);
+		const that = this;
 		return (
 			<div>
 				<div>
@@ -178,7 +162,6 @@ class DetailBook extends React.Component {
 
 							<div className="rating">
 								<meter min="0" max="5" optimum="100" low="40" high="50" value="3" width="200px" />
-								{/* <p className="rmdb-score">Book Score</p> */}
 							</div>
 						</div>
 					</div>
@@ -193,8 +176,11 @@ class DetailBook extends React.Component {
 						<div className={this.state.visible ? 'book-comments' : 'book-none'}>
 							<CostumDiv>
 								<Name>
-									{this.state.selectedReviews &&
-										this.state.selectedReviews.map((rv) => {
+									{this.props.reviews
+										.filter((review) => {
+											return review.books_id == that.state.selectedId;
+										})
+										.map((rv) => {
 											return (
 												<div key={rv.id}>
 													<p className="username">Username: {rv.reviewer}</p>

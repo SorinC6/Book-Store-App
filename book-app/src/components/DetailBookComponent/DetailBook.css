@@ -10,13 +10,17 @@
 		opacity: 1;
 	}
 }
+h1,h2,h3,h4 {
+   font-family: 'EB Garamond', serif;
 
+}
 .book-content {
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
 	margin: 0 auto;
 	max-width: 80%;
+	font-family: 'EB Garamond', serif;
 
 	background: rgba(87, 57, 57, 0.7);
 }
@@ -51,6 +55,13 @@
 
 meter {
 	width: 300px;
+}
+
+@media (max-width: 500px) {
+	meter {
+      width: 100px;
+   }
+   
 }
 
 .username {
@@ -98,6 +109,6 @@ meter {
 
 .icon {
 	position: absolute;
-   right: 10%;
-   font-size:20px;
+	right: 10%;
+	font-size: 20px;
 }

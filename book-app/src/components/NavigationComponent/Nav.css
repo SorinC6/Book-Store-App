@@ -2,7 +2,6 @@
 	/* animation: animateMovieinfo 5s; */
 	animation-name: example;
 	animation-duration: 1s;
-	position: relative;
 	background-color: #e6e9de;
 }
 
@@ -73,15 +72,27 @@
 	color: white;
 	font-weight: bold;
 	font-size: 20px;
-	margin-top: 20px;
+	margin-top: 30px;
 	cursor: pointer;
+}
+
+.add-btn:hover {
+	transform: scale(1.4);
+	transition: 0.25s ease-in-out;
+	color: white;
 }
 
 .logout-btn {
 	position: relative;
 	color: white;
-	left: 40%;
+	font-size: 22px;
+	left: 41%;
 	margin-top: 30px;
 	cursor: pointer;
 	font-weight: bold;
 }
+
+a{
+   color:white;
+}
+

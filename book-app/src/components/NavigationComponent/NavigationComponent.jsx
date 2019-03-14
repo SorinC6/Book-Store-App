@@ -78,6 +78,7 @@ const Settings = styled.div`
 	z-index: 20;
 	position: absolute;
 	margin-top: 90px;
+	right: 7%;
 
 	div {
 		margin: 15px;
@@ -86,6 +87,9 @@ const Settings = styled.div`
 		padding: 15px;
 		border-radius: 50%;
 		text-align: center;
+      right: 0;
+      background:black;
+      color:white;
 
 		& :hover {
 			color: blue;
@@ -125,8 +129,12 @@ class NavigationComponent extends React.Component {
 					<LinkContainer to="/home">Home</LinkContainer>
 					<LinkContainer to="/contact">About</LinkContainer>
 					<LinkContainer to="/contact">Contact</LinkContainer>
-					<Link to="/add-form" className="add-btn">Add Book</Link>
-					<div onClick={this.logout} className="logout-btn">Logout</div>
+					<Link to="/add-form" className="add-btn">
+						Add Book
+					</Link>
+					<div onClick={this.logout} className="logout-btn">
+						Logout
+					</div>
 				</div>
 				<LinkContainer to="/home">Home</LinkContainer>
 				<LinkContainer to="/contact">About</LinkContainer>

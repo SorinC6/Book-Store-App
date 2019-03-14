@@ -65,7 +65,7 @@ class AddFormComponent extends Component {
 		return (
 			<div className="form-container background">
 				<Navigation />
-				<h1 style={{ textAlign: 'center', marginTop: '20px' }}>Add a book to Collection</h1>
+				<h1 style={{ textAlign: 'center', marginTop: '10px' }}>Add a book to Collection</h1>
 				<FromWrapper onSubmit={this.addBook} className="add">
 					<input
 						className="input-style"
