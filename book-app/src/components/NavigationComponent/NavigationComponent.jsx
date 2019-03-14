@@ -125,8 +125,8 @@ class NavigationComponent extends React.Component {
 					<LinkContainer to="/home">Home</LinkContainer>
 					<LinkContainer to="/contact">About</LinkContainer>
 					<LinkContainer to="/contact">Contact</LinkContainer>
-					<Link to="/add-form">Add Book</Link>
-					<div onClick={this.logout}>Logout</div>
+					<Link to="/add-form" className="add-btn">Add Book</Link>
+					<div onClick={this.logout} className="logout-btn">Logout</div>
 				</div>
 				<LinkContainer to="/home">Home</LinkContainer>
 				<LinkContainer to="/contact">About</LinkContainer>

@@ -16,10 +16,10 @@ const CommentDiv = styled.div`
 	h2 {
 		padding: 10px;
 		cursor: pointer;
-		&:hover {
+		/* &:hover {
 			background-color: black;
 			color: white;
-		}
+		} */
 	}
 `;
 
@@ -119,6 +119,8 @@ class DetailBook extends React.Component {
 			books_id: this.state.selectedId
 		};
 
+		console.log(review);
+
 		!this.props.isPostingReview && this.props.addReview(review);
 		this.filterReviews();
 
@@ -139,12 +141,11 @@ class DetailBook extends React.Component {
 	};
 
 	handleVsible = () => {
-		console.log('click');
 		this.setState({ visible: !this.state.visible });
 	};
 
 	render() {
-		console.log(this.state.visible);
+		//console.log(this.state.visible);
 		return (
 			<div>
 				<div>

@@ -9,7 +9,7 @@ class DetalilBookView extends Component {
 		this.props.getReviews();
 	}
 	render() {
-		console.log(this.props);
+		//console.log(this.props);
 		return (
 			<div>
 				{this.props.reviews.length > 0 && (
