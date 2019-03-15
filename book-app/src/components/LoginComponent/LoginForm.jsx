@@ -70,6 +70,7 @@ class LoginForm extends React.Component {
 
 		return (
 			<div className="form-loader">
+				
 				<form onSubmit={this.handleLogin} className="inner-container box-container ">
 					<input
 						type="text"
@@ -96,7 +97,9 @@ class LoginForm extends React.Component {
 						<button className="login-btn">Register</button>
 					</Link>
 				</form>
-				<div style={{textAlign:'center',marginTop:'20px'}}>{this.props.isLoggingIn && <Loader type="Puff" color="#00BFFF" height="200" width="200" />}</div>
+				<div style={{ textAlign: 'center', marginTop: '20px' }}>
+					{this.props.isLoggingIn && <Loader type="Puff" color="#00BFFF" height="200" width="200" />}
+				</div>
 			</div>
 		);
 	}

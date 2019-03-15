@@ -1,8 +1,29 @@
 .root-container {
 	display: flex;
 	align-items: center;
+	flex-direction: column;
+	align-items: center;
 	background-image: linear-gradient(#c6ffdd, #fbd786);
 	padding: 200px;
+}
+
+.text-intro {
+	position: absolute;
+	top: 10%;
+	font-family: 'Rye', cursive;
+	animation: animateMovieinfo 3s;
+}
+.description {
+	line-height: 1.2;
+}
+
+@keyframes animateMovieinfo {
+	from {
+		opacity: 0.3;
+	}
+	to {
+		opacity: 1;
+	}
 }
 
 .box-controller {
@@ -42,6 +63,7 @@
 	box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
 	border-radius: 6px;
 	padding: 24px;
+	animation: animateMovieinfo 3s;
 }
 
 .inner-container {

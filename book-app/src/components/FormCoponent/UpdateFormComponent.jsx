@@ -95,7 +95,7 @@ class UpdateFromComponent extends Component {
 		return (
 			<div className="form-container background">
 				<Navigation />
-				<h1 style={{ textAlign: 'center', marginTop: '10px' }}>Update Book</h1>
+				<h1 style={{ textAlign: 'center', marginTop: '80px', fontFamily: 'Rye' }}>Update Book</h1>
 				<FromWrapper onSubmit={this.updateBook} className="update">
 					<input
 						className="input-style"

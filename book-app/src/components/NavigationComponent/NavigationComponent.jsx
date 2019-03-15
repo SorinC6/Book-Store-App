@@ -16,8 +16,8 @@ const NavContainer = styled.nav`
 	position: fixed;
 	top: 0;
 	width: 100%;
-	z-index: 2;
-	position: relative;
+	z-index: 10;
+	/* position: relative; */
 
 	img {
 		width: 50px;
@@ -27,6 +27,9 @@ const NavContainer = styled.nav`
 		left: 1%;
 		border-radius: 50%;
 		display: none;
+		&:hover {
+			transform: rotate(360deg);
+		}
 		@media (max-width: 500px) {
 			display: block;
 		}

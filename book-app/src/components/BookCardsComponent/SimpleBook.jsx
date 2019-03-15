@@ -65,7 +65,7 @@ const SimpleBook = (props) => {
 			</div>
 
 			<Link to="/update-form" onClick={sendCurrentIdToLOcalStorage} className="link">
-				Update Book
+				<p style={{fontFamily:'Cardo'}}>Update Book</p>
 			</Link>
 		</Container>
 	);

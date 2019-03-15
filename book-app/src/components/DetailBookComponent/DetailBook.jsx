@@ -176,7 +176,10 @@ class DetailBook extends React.Component {
 
 				<div>
 					<CommentDiv>
-						<h2 style={{ textAlign: 'center' }} onClick={this.handleVsible}>
+						<h2
+							style={{ textAlign: 'center', fontFamily: 'Jacques Francois Shadow' }}
+							onClick={this.handleVsible}
+						>
 							See the Review for this book
 						</h2>
 
@@ -202,7 +205,8 @@ class DetailBook extends React.Component {
 													</p>
 
 													<Text>
-														Review: <span>{rv.review}</span>{' '}
+														<span style={{ fontWeight: 'bold' }}>Review:</span>{' '}
+														<span>{rv.review}</span>{' '}
 													</Text>
 												</div>
 											);

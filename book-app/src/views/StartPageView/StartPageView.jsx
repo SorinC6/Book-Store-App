@@ -5,7 +5,7 @@ import Confetti from 'react-confetti';
 
 const WrapperLink = styled(Link)`
    padding:40px;
-   font-size:20px;
+   font-size:40px;
    text-decoration:none;
    cursor:pointer;
 
@@ -17,7 +17,9 @@ const WrapperLink = styled(Link)`
 
 const CostumDiv = styled.div`
 	display: flex;
-   justify-content:center;
+	justify-content: center;
+   font-family: 'Jacques Francois Shadow', cursive;
+   
 `;
 
 const StartPageView = (props) => {
@@ -29,7 +31,7 @@ const StartPageView = (props) => {
 			</CostumDiv>
 
 			<div>
-				<Confetti width="1500" height="1000" style={{zIndex:'1', marginTop:'150px'}}/>
+				<Confetti width="1500" height="500" style={{ zIndex: '1', marginTop: '150px' }} />
 			</div>
 		</div>
 	);
