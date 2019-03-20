@@ -7,7 +7,7 @@ const Container = styled.div`
 	/* border: 1px solid #F8F0F0; */
 	padding: 20px;
 	width: 240px;
-	margin-top: 20px;
+	margin-top: 0;
 	background: rgba(45, 82, 77, 0.1);
 	text-align: center;
 	margin: 2px;
@@ -50,7 +50,6 @@ const SimpleBook = (props) => {
 	};
 
 	return (
-		// <link to={`home/${id}`}>
 
 		<Container>
 			<div className="delete-btn" onClick={() => props.deleteBook(id)}>
