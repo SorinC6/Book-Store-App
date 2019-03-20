@@ -15,7 +15,7 @@ const HeaderImg = () => (
 	>
 		<div className="heroimage-content">
 			<div className="heroimage-text">
-				<h1>Lambbda Buld Week Project</h1>
+				<h1>Lambbda Build Week Project</h1>
 				<p>
 					The world is a book, and those who do not travel read only a page
 				</p>

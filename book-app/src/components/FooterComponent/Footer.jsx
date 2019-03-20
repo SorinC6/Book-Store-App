@@ -4,26 +4,42 @@ import styled from 'styled-components';
 const FooterContainer = styled.nav`
 	max-width: 100%;
 	background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(255, 0, 0, 1));
-	height:100px;
+	height: 130px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	position: fixed;
+	position:relative;
 	bottom: 0;
 	width: 100%;
 	z-index: 2;
 
-	button {
+	h1 {
+		font-size: 16px;
+		font-family: 'Cardo', serif;
+	}
+
+	input {
+		margin-left: 20px;
+	}
+
+	p {
 		position: absolute;
-		right: 10%;
-		padding: 15px;
+		bottom: 0;
+		font-size: 10px;
 	}
 `;
 
 const Footer = (props) => {
 	return (
 		<FooterContainer>
-		<h1>Footer</h1>
+			<h1>
+				Enter your email{' '}
+				<span>
+					<input placeholder="email..." />
+				</span>
+			</h1>
+
+			<p>Copyright Chis Sorin</p>
 		</FooterContainer>
 	);
 };

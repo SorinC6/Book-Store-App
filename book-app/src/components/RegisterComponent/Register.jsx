@@ -7,6 +7,7 @@ const Register = (props) => {
 	//console.log('Register props ', props);
 	return (
 		<div className="root-container">
+			<h1 className="text-intro">Register</h1>
 			<RegisterForm {...props} />
 		</div>
 	);

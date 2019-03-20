@@ -1,12 +1,11 @@
 import React from 'react';
 import LoginForm from './LoginForm';
 import './Login.css';
-// import { Spring } from 'react-spring/renderprops'
 
 const Login = (props) => {
-	//console.log('Register props ', props);
 	return (
 		<div className="root-container">
+			<h2 className="text-intro">Login</h2>
 			<LoginForm {...props} />
 		</div>
 	);

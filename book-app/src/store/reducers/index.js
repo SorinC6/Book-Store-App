@@ -201,7 +201,7 @@ const rootReducer = (state = initialState, action) => {
 				isPostingReview: true,
 				error: ''
 			};
-		case POSTING_REVIEW_SUCCESS:
+      case POSTING_REVIEW_SUCCESS:
 			//debugger;
 			return {
 				...state,
@@ -214,7 +214,7 @@ const rootReducer = (state = initialState, action) => {
 				isPostingReview: false,
 				error: action.payload
 			};
-		//=============================UPDATE book case
+		//=============================UPDATE book case===============================
 		case UPDATE_BOOK_START:
 			return {
 				...state,
@@ -224,7 +224,9 @@ const rootReducer = (state = initialState, action) => {
 		case UPDATE_BOOK_SUCCESS:
 			return {
 				...state,
-				error: false
+				isUpdating: false,
+				//
+				error: ''
 			};
 		case UPDATE_BOOK_FAILURE:
 			return {

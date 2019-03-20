@@ -4,6 +4,7 @@ import { updateBook, getBooks } from '../../store/actions/index';
 import styled from 'styled-components';
 import Navigation from '../NavigationComponent/NavigationComponent';
 import Footer from '../FooterComponent/Footer';
+import './AddBook.css';
 
 const FromWrapper = styled.div`
 	display: flex;
@@ -11,7 +12,7 @@ const FromWrapper = styled.div`
 	margin: 0 auto;
 	flex-direction: column;
 	justify-content: space-evenly;
-	padding: 0 20px;
+	padding-bottom: 110px;
 
 	input {
 		background-color: #fff;
@@ -48,8 +49,8 @@ class UpdateFromComponent extends Component {
 	}
 
 	componentDidMount() {
-		this.props.getBooks();
 		this.pupulateBookFields();
+		this.props.getBooks();
 	}
 	handleChanges = (e) => {
 		this.setState({
@@ -66,13 +67,11 @@ class UpdateFromComponent extends Component {
 		this.setState({
 			book: this.props.books.find((book) => book.id == id)
 		});
-
-		//this.props.history.push('/home');
 	};
 
 	updateBook = (e) => {
 		e.preventDefault();
-      let id = localStorage.getItem('CurrentId');
+		let id = localStorage.getItem('CurrentId');
 
 		const data = {
 			title: this.state.book.title,
@@ -81,17 +80,23 @@ class UpdateFromComponent extends Component {
 			summary: this.state.book.summary
 		};
 
-      this.props.updateBook(data, id);
-      
-      this.props.history.push('./home')
+		!this.props.isFetchingBooks && this.props.updateBook(data, id);
+		//this.props.getBooks()
+		this.props.getBooks();
+
+		if (!this.props.isUpdatingBook) {
+			this.props.getBooks();
+		}
+		this.props.history.push('./home');
 	};
 
 	render() {
+		//console.log(this.props.books)
 		return (
-			<div className="form-container">
+			<div className="form-container background">
 				<Navigation />
-				<h1 style={{ textAlign: 'center', marginTop: '80px' }}>Update Bookk</h1>
-				<FromWrapper onSubmit={this.updateBook}>
+				<h1 style={{ textAlign: 'center', marginTop: '80px', fontFamily: 'Rye' }}>Update Book</h1>
+				<FromWrapper onSubmit={this.updateBook} className="update">
 					<input
 						className="input-style"
 						onChange={this.handleChanges}
@@ -136,7 +141,9 @@ class UpdateFromComponent extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		books: state.books
+		books: state.books,
+		isUpdatingBook: state.isUpdatingBook,
+		isFetchingBooks: state.isisFetchingBooks
 		// isAddingBook: state.isAddingBook,
 		// error: state.error
 	};

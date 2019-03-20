@@ -44,10 +44,13 @@ export const deleteBook = (id) => (dispatch) => {
 		.catch((err) => dispatch({ type: DELETING_BOOK_FAILURE, payload: err.message }));
 };
 
-export const updateBook = (data,id) => (dispatch) => {
+export const updateBook = (data, id) => (dispatch) => {
 	dispatch({ type: UPDATE_BOOK_START });
 	axiosWithAuth()
-		.put(`http://localhost:7111/api/books/${id}`,data)
-		.then((res) => dispatch({ type: UPDATE_BOOK_SUCCESS, payload: res.data }))
+		.put(`http://localhost:7111/api/books/${id}`, data)
+		.then((res) => {
+			dispatch({ type: UPDATE_BOOK_SUCCESS, payload: data });
+			getBooks();
+		})
 		.catch((err) => dispatch({ type: UPDATE_BOOK_FAILURE, payload: err.message }));
 };

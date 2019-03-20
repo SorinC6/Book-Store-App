@@ -10,6 +10,7 @@ import NavigationComponent from './components/NavigationComponent/NavigationComp
 import Footer from './components/FooterComponent/Footer';
 import AddFormComponent from './components/FormCoponent/AddFormComponent';
 import UpdateFormComponent from './components/FormCoponent/UpdateFormComponent';
+import ContactView from './views/ContactComponent/ContactView'
 
 class App extends Component {
 	render() {
@@ -27,6 +28,7 @@ class App extends Component {
 				<Route exact path="/" component={StartPageView} />
 				<Route path="/login" component={LoginView} />
 				<Route path="/register" component={RegisterView} />
+            <Route path="/contact" component={ContactView}/>
 			</div>
 		);
 	}

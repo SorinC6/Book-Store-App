@@ -1,6 +1,4 @@
 import axiosWithAuth from '../axios/axios';
-import axios from '../axios/axios';
-import { DELETING_BOOK_FAILURE } from './bookActions';
 
 export const FETCHING_REVIEWS_START = 'FETCHING_REVIEWS_START';
 export const FETCHING_REVIEWS_SUCCESS = 'FETCHING_REVIEWS_SUCCESS';
@@ -27,7 +25,10 @@ export const addReview = (data) => (dispatch) => {
 	//console.log('data send',data)
 	axiosWithAuth()
 		.post('http://localhost:7111/api/reviews', data)
-		.then((res) => dispatch({ type: POSTING_REVIEW_SUCCESS, payload: res.data }))
+		.then((res) => {
+			dispatch({ type: POSTING_REVIEW_SUCCESS, payload: res.data });
+			dispatch(getReviews());
+		})
 		.catch((err) => dispatch({ type: POSTING_REVIEW_FAILURE, payload: err.message }));
 };
 

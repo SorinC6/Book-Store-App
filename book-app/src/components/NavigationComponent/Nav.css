@@ -1,0 +1,98 @@
+.settings {
+	/* animation: animateMovieinfo 5s; */
+	animation-name: example;
+	animation-duration: 1s;
+	background-color: #e6e9de;
+}
+
+@keyframes animateMovieinfo {
+	from {
+		/* opacity: 0; */
+		top: 500;
+	}
+	to {
+		/* opacity: 1; */
+		top: 0;
+	}
+}
+@keyframes example {
+	0% {
+		opacity: 0;
+		left: 0px;
+		top: -1000px;
+	}
+
+	100% {
+		opacity: 1;
+		left: 0px;
+		top: 0px;
+	}
+}
+
+.none {
+	display: none;
+}
+
+.menu {
+	display: none;
+}
+@media (max-width: 500px) {
+	.menu {
+		position: absolute;
+		width: 400px;
+		height: 524px;
+		border: 1px solid black;
+		left: 0;
+		top: 100%;
+		background-color: rgb(51, 47, 47);
+		opacity: 0.8;
+		display: flex;
+		flex-direction: column;
+		left: -500px;
+		animation: slide 0.5s forwards;
+	}
+
+	@-webkit-keyframes slide {
+		100% {
+			left: 0;
+		}
+	}
+
+	@keyframes slide {
+		100% {
+			left: 0;
+		}
+	}
+}
+
+.display-none {
+	display: none;
+}
+.add-btn {
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 30px;
+	cursor: pointer;
+}
+
+.add-btn:hover {
+	transform: scale(1.4);
+	transition: 0.25s ease-in-out;
+	color: white;
+}
+
+.logout-btn {
+	position: relative;
+	color: white;
+	font-size: 22px;
+	left: 41%;
+	margin-top: 30px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+a{
+   color:white;
+}
+

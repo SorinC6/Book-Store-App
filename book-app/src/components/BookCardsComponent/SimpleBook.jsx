@@ -4,27 +4,32 @@ import BookImg from '../../assets/book-cover.png';
 import { Link, withRouter } from 'react-router-dom';
 
 const Container = styled.div`
-	border: 1px solid black;
+	/* border: 1px solid #F8F0F0; */
 	padding: 20px;
 	width: 240px;
-	margin-top: 20px;
-	border-radius: 10px;
+	margin-top: 0;
 	background: rgba(45, 82, 77, 0.1);
+	text-align: center;
+	margin: 2px;
+	margin-bottom: 20px;
 
-	& :hover {
-		transform: scale(1.1);
-		transition: 0.25s ease-in-out;
-		color: purple;
+	.link {
+		font-weight: bold;
+		color: black;
 	}
 
 	.entry {
-		margin: 30px 10px;
+		margin: 20px 10px;
 		padding: 20px 20px;
-		box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+		box-shadow: 19px 3px 15px rgba(0, 2, 1, 0.4);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		text-decoration: none;
+		font-family: 'Hind', sans-serif;
+		color: blue;
+		background: linear-gradient(to bottom, #33ccff 0%, #ffcc66 100%);
+		border-radius: 10%;
 
 		img {
 			width: 200px;
@@ -45,11 +50,10 @@ const SimpleBook = (props) => {
 	};
 
 	return (
-		// <link to={`home/${id}`}>
 
 		<Container>
 			<div className="delete-btn" onClick={() => props.deleteBook(id)}>
-				X
+				<i class="fas fa-ban" />
 			</div>
 			<div className="entry">
 				<Link to={`/home/${id}`} key={id} onClick={sendCurrentIdToLOcalStorage}>
@@ -59,11 +63,9 @@ const SimpleBook = (props) => {
 				</Link>
 			</div>
 
-			<Link to="/update-form" onClick={sendCurrentIdToLOcalStorage}>
-				Update Book
+			<Link to="/update-form" onClick={sendCurrentIdToLOcalStorage} className="link">
+				<p style={{fontFamily:'Cardo'}}>Update Book</p>
 			</Link>
-
-			{/* <Route path="/home/:id" render={(props) => <DetailBook {...props} book={props.book} />} /> */}
 		</Container>
 	);
 };

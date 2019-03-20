@@ -6,28 +6,51 @@ import NavigationComponent from '../NavigationComponent/NavigationComponent';
 import HeaderImgHeader from '../HeaderImgComponent/HeaderImg';
 import Footer from '../FooterComponent/Footer';
 import './HomeComponent.css';
-// import { connect } from 'react-redux';
-// import { deleteBook } from '../../store/actions/index';
-// import AddFormComponent from '../FormCoponent/AddFormComponent';
+import SearchBar from '../SearchBarComponent/SearchBar';
 
 const ContainerList = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-evenly;
-	padding: 20px 150px;
-	margin-top: 100px;
-	padding-top: 40px;
+	margin-top: 10px;
+	padding-top: 0px;
 	padding-bottom: 150px;
 `;
 
 class HomeComponent extends React.Component {
-	// deleteBook = (id) => {
-	//    console.log('Finnaly?? ',id)
-	//    this.props.deleteBook(id)
-	// }
+	state = {
+		searchValue: '',
+		filterBooks: []
+	};
+
+	onChange = (e) => {
+		this.setState({
+			searchValue: e.target.value
+		});
+	};
+
+	onSubmit = (e) => {
+		e.preventDefault();
+		//console.log('Working');
+		this.filerBook();
+	};
+
+	filerBook = () => {
+		const search = this.state.searchValue;
+		const fl = this.props.books.filter((book) => {
+			//console.log('title ', book.title);
+			console.log('Search ', search);
+
+			//debugger;
+			return book.title.includes(search);
+		});
+
+		this.setState({
+			filerBooks: fl
+		});
+	};
 
 	render() {
-		//console.log(this.props);
 		return (
 			<div style={{ backgroundImage: 'linear-gradient(#C6FFDD, #FBD786)' }}>
 				<header>
@@ -37,15 +60,27 @@ class HomeComponent extends React.Component {
 					<HeaderImgHeader />
 				</header>
 
-				<ContainerList>
-					{this.props.isFetchingBooks ? (
-						<Loader type="Puff" color="#00BFFF" height="100" width="100" />
-					) : (
-						this.props.books.map((book) => {
-							return <SimpleBook key={book.id} book={book} {...this.props} />;
-						})
-					)}
-				</ContainerList>
+				<SearchBar searchValue={this.state.searchValue} onChange={this.onChange} onSubmit={this.onSubmit} />
+
+				{this.state.filerBooks ? (
+					this.state.filerBooks.map((book) => {
+						return (
+							<ContainerList>
+								<SimpleBook key={book.id} book={book} {...this.props} />
+							</ContainerList>
+						);
+					})
+				) : (
+					<ContainerList>
+						{this.props.isFetchingBooks ? (
+							<Loader type="Puff" color="#00BFFF" height="100" width="100" />
+						) : (
+							this.props.books.map((book) => {
+								return <SimpleBook key={book.id} book={book} {...this.props} />;
+							})
+						)}
+					</ContainerList>
+				)}
 
 				<footer>
 					<Footer />

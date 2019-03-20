@@ -1,10 +1,29 @@
-
-
 .root-container {
 	display: flex;
-   align-items: center;
-   background-image: linear-gradient(#C6FFDD, #FBD786);
-   padding:200px;
+	align-items: center;
+	flex-direction: column;
+	align-items: center;
+	background-image: linear-gradient(#c6ffdd, #fbd786);
+	padding: 200px;
+}
+
+.text-intro {
+	position: absolute;
+	top: 10%;
+	font-family: 'Rye', cursive;
+	animation: animateMovieinfo 3s;
+}
+.description {
+	line-height: 1.2;
+}
+
+@keyframes animateMovieinfo {
+	from {
+		opacity: 0.3;
+	}
+	to {
+		opacity: 1;
+	}
 }
 
 .box-controller {
@@ -44,6 +63,7 @@
 	box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
 	border-radius: 6px;
 	padding: 24px;
+	animation: animateMovieinfo 3s;
 }
 
 .inner-container {
@@ -97,9 +117,9 @@
 	font-family: Oxygen, sans-serif;
 	font-size: 19px;
 	color: #3e3e42;
-   background: rgba(15, 15, 15, 0.01);
-   margin:10px;
-   text-align: center;
+	background: rgba(15, 15, 15, 0.01);
+	margin: 10px;
+	text-align: center;
 }
 
 .login-input:hover {
@@ -114,8 +134,8 @@
 /* //Input Placeholder */
 .login-input::placeholder {
 	font-family: Oxygen, sans-serif;
-   font-size: 16px; 
-   color: rgba(46, 213, 116, 0.839);
+	font-size: 16px;
+	color: rgba(46, 213, 116, 0.839);
 	color: rgba(15, 15, 15, 0.4);
 }
 
@@ -130,8 +150,8 @@
 	margin-top: 20px;
 	border: 2px solid #417cef;
 	transition: background-color 0.3s ease-out;
-   cursor: pointer;
-   margin:10px;
+	cursor: pointer;
+	margin: 10px;
 }
 
 .login-btn:hover,
@@ -174,8 +194,10 @@
 	visibility: visible;
 }
 
-a{
-   text-align: center;
+a {
+	text-align: center;
 }
 
-
+.backgroud {
+	background-image: linear-gradient(#c6ffdd, #fbd786);
+}

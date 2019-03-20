@@ -4,9 +4,7 @@ import './DetailBook.css';
 import NavigationBar from '../NavigationBarComponent/NavigationBar';
 import Navigation from '../NavigationComponent/NavigationComponent';
 import styled from 'styled-components';
-import ReviewList from './ReviewList';
 import Footer from '../FooterComponent/Footer';
-
 
 const CommentDiv = styled.div`
 	border: 1px solid #edebeb;
@@ -14,7 +12,15 @@ const CommentDiv = styled.div`
 	margin: 0 auto;
 	margin-bottom: 150px;
 	border-radius: 10px;
-	background: #e6e9de;
+
+	h2 {
+		padding: 10px;
+		cursor: pointer;
+		/* &:hover {
+			background-color: black;
+			color: white;
+		} */
+	}
 `;
 
 const Name = styled.div`
@@ -23,6 +29,13 @@ const Name = styled.div`
 	font-size: 15px;
 	padding: 0;
 	margin-left: 4px;
+
+	span {
+		padding-left: 10px;
+		width: 200px;
+	}
+	div {
+	}
 `;
 
 const Text = styled.span`
@@ -36,6 +49,14 @@ const Form = styled.form`
 	align-items: center;
 	height: 60px;
 	border-top: 1px dashed #edebeb;
+	position: relative;
+	input {
+		border-radius: 10px;
+
+		&:focus {
+			background-color: #f6efef;
+		}
+	}
 
 	input {
 		width: 100%;
@@ -48,12 +69,11 @@ const Form = styled.form`
 	i {
 		font-size: 30px;
 		margin-right: 10px;
+		right: 0;
 	}
 `;
 
 const CostumDiv = styled.div``;
-
-//const TransitionGroup = React.addons.TransitionGroup;
 
 class DetailBook extends React.Component {
 	constructor(props) {
@@ -68,26 +88,13 @@ class DetailBook extends React.Component {
 			currentPubliser: '',
 			comment: '',
 			totalLikes: '',
-			likeCount: ''
+			likeCount: '',
+			visible: false
 		};
 	}
 
 	componentDidMount() {
 		this.props.getReviews();
-		console.log(this.props.reviews);
-
-		const getSelectedReview = this.props.reviews.filter((rv) => {
-			//console.log(rv)
-			// console.log('Review Id' ,rv.books_id);
-			// console.log('Current ID',this.state.selectedId)
-			return rv.books_id == this.state.selectedId;
-		});
-
-		console.log('Reviews ', getSelectedReview); //working - getting the object
-
-		this.setState({
-			selectedReviews: getSelectedReview
-		});
 
 		this.setState({
 			currentTitle: localStorage.getItem('CurrentTitle'),
@@ -99,15 +106,14 @@ class DetailBook extends React.Component {
 
 	addReview = (e) => {
 		e.preventDefault();
-		const fakeReview = {
+		const review = {
 			review: this.state.comment,
 			rating: 3,
 			reviewer: localStorage.getItem('userToken'),
 			books_id: this.state.selectedId
 		};
 
-		console.log(fakeReview);
-		this.props.addReview(fakeReview);
+		this.props.addReview(review);
 
 		this.setState({
 			comment: ''
@@ -118,14 +124,19 @@ class DetailBook extends React.Component {
 		this.setState({
 			comment: e.target.value
 		});
-   };
-   deleteReview = (id) => {
-      console.log('delete')
-      this.props.deleteReview(id)
-      console.log(id)
-   }
+	};
+	deleteReview = (id) => {
+		console.log('delete');
+		this.props.deleteReview(id);
+		console.log(id);
+	};
+
+	handleVsible = () => {
+		this.setState({ visible: !this.state.visible });
+	};
 
 	render() {
+		const that = this;
 		return (
 			<div>
 				<div>
@@ -152,13 +163,12 @@ class DetailBook extends React.Component {
 
 							<h2>By {this.state.currentAuthor}</h2>
 							<h3>Description</h3>
-							{this.state.currentSummary}
+							<p className="description">{this.state.currentSummary}</p>
 							<h4>Publisher: {this.state.currentPubliser}</h4>
 							<h3>Review RATING</h3>
 
 							<div className="rating">
 								<meter min="0" max="5" optimum="100" low="40" high="50" value="3" width="200px" />
-								{/* <p className="rmdb-score">Book Score</p> */}
 							</div>
 						</div>
 					</div>
@@ -166,18 +176,38 @@ class DetailBook extends React.Component {
 
 				<div>
 					<CommentDiv>
-						<h2 style={{ textAlign: 'center' }}>See the Review for this book</h2>
+						<h2
+							style={{ textAlign: 'center', fontFamily: 'Jacques Francois Shadow' }}
+							onClick={this.handleVsible}
+						>
+							See the Review for this book
+						</h2>
 
-						<div>
+						<div className={this.state.visible ? 'book-comments' : 'book-none'}>
 							<CostumDiv>
 								<Name>
-									{this.state.selectedReviews &&
-										this.state.selectedReviews.map((rv) => {
+									{this.props.reviews
+										.filter((review) => {
+											return review.books_id == that.state.selectedId;
+										})
+										.map((rv) => {
 											return (
-												<div>
-													<p className="username">Username: {rv.reviewer}</p>
-													<Text>Review: {rv.review} </Text>
-													<i class="far fa-trash-alt" onClick={()=>this.deleteReview(rv.id)}/>
+												<div key={rv.id}>
+													<p className="username">
+														Username: {rv.reviewer}
+														<span>
+															{' '}
+															<i
+																className="far fa-trash-alt icon"
+																onClick={() => this.deleteReview(rv.id)}
+															/>
+														</span>
+													</p>
+
+													<Text>
+														<span style={{ fontWeight: 'bold' }}>Review:</span>{' '}
+														<span>{rv.review}</span>{' '}
+													</Text>
 												</div>
 											);
 										})}
@@ -201,6 +231,7 @@ class DetailBook extends React.Component {
 						</div>
 					</CommentDiv>
 				</div>
+
 				<Footer />
 			</div>
 		);
