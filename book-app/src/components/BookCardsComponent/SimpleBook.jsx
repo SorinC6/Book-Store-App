@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import BookImg from "../../assets/book-cover.png";
+import BookImg from "../../assets/cover.jpg";
 import { Link, withRouter } from "react-router-dom";
 
 const Container = styled.div`
@@ -11,10 +11,12 @@ const Container = styled.div`
   background: rgba(45, 82, 77, 0.1);
   margin: 2px;
   margin-bottom: 20px;
+  text-align: center;
 
   .link {
     font-weight: bold;
     color: black;
+	background-image:url(${BookImg})
   }
 
   .entry {
@@ -29,11 +31,18 @@ const Container = styled.div`
     color: blue;
     background: linear-gradient(to bottom, #33ccff 0%, #ffcc66 100%);
     border-radius: 10%;
+  	background-image:url("${BookImg}");
 
     img {
       width: 200px;
-      height: 170px;
+      height: 250px;
     }
+	h4{
+		color:black;
+	}
+	p{
+		color:darkred;
+	}
   }
 `;
 
@@ -56,8 +65,8 @@ const SimpleBook = props => {
       <div className="entry">
         <Link to={`/home/${id}`} key={id} onClick={sendCurrentIdToLOcalStorage}>
           <img src={BookImg} alt="title" />
-          <h4>{title}</h4>
-          <p>By {author}</p>
+          {/* <h4>{title}</h4>
+          <p>By {author}</p> */}
         </Link>
       </div>
 
