@@ -16,7 +16,7 @@ const Container = styled.div`
   .link {
     font-weight: bold;
     color: black;
-	background-image:url(${BookImg})
+    background-image: url(${BookImg});
   }
 
   .entry {
@@ -30,19 +30,40 @@ const Container = styled.div`
     font-family: "Hind", sans-serif;
     color: blue;
     background: linear-gradient(to bottom, #33ccff 0%, #ffcc66 100%);
-    border-radius: 10%;
-  	background-image:url("${BookImg}");
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
 
     img {
       width: 200px;
       height: 250px;
+      transition: transform 1s;
     }
-	h4{
-		color:black;
-	}
-	p{
-		color:darkred;
-	}
+    h4 {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 30%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      background-color: darkgrey;
+      transform: translateY(100%);
+      transition: all 1s;
+      p {
+        max-width: 85%;
+      }
+    }
+    &:hover h4 {
+      transform: translateY(0);
+    }
+    &:hover img {
+      transform: translateY(-30%);
+    }
   }
 `;
 
@@ -65,8 +86,8 @@ const SimpleBook = props => {
       <div className="entry">
         <Link to={`/home/${id}`} key={id} onClick={sendCurrentIdToLOcalStorage}>
           <img src={BookImg} alt="title" />
-          {/* <h4>{title}</h4>
-          <p>By {author}</p> */}
+          <p>{title}</p>
+          <h4>By {author}</h4>
         </Link>
       </div>
 
