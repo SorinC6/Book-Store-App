@@ -127,7 +127,7 @@ class DetailBook extends React.Component {
 	};
 	deleteReview = (id) => {
 		console.log('delete');
-		this.props.deleteReview(id);
+		//this.props.deleteReview(id);
 		console.log(id);
 	};
 

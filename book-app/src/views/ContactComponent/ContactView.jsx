@@ -12,10 +12,10 @@ const ContactView = () => {
 				<h2 className="desc">Lambda School Student</h2>
 			</div>
 			<div className="social-icon">
-				<a href="#" class="fa fa-facebook" />
-				<a href="#" class="fa fa-twitter" />
-				<a href="#" class="fa fa-google" />
-				<a href="#" class="fa fa-linkedin" />
+				<a href="#s" class="fa fa-facebook" />
+				<a href="#s" class="fa fa-twitter" />
+				<a href="#s" class="fa fa-google" />
+				<a href="#s" class="fa fa-linkedin" />
 			</div>
 			<Footer />
 		</div>

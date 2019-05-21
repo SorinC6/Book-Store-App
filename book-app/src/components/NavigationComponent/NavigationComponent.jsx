@@ -129,7 +129,7 @@ class NavigationComponent extends React.Component {
 		//console.log(this.state.showMenu);
 		return (
 			<NavContainer>
-				<img src={HambPic} alt="hamburger-image" onClick={this.showMenu} />
+				<img src={HambPic} alt="hamburger" onClick={this.showMenu} />
 				<div className={this.state.showMenu ? 'menu' : 'display-none'}>
 					<LinkContainer to="/home">Home</LinkContainer>
 					<LinkContainer to="/contact">About</LinkContainer>
