@@ -15,12 +15,20 @@ const Form = styled.form`
     height: 30px;
     font-size: 14px;
     border: 2px solid white;
-    border-radius: ${pro => (pro.focused ? "30%" : "70%")};
+    border-radius: ${pro => (pro.focused ? "20px" : "10px")};
     color: black;
     padding: 0.5rem 0;
-    border-radius: 3px;
     background-color: ${props => (props.focused ? "transparent" : "grey")};
     transition: all 2s;
+    outline: none;
+    text-align: center;
+    color: black;
+
+    ::placeholder {
+      color: blue;
+      font-style: italic;
+      font-size: 20px;
+    }
   }
   button {
     padding: 10px;
@@ -45,7 +53,8 @@ const SearchBar = props => {
         <input
           type="text"
           name="searchValue"
-          onChange={(e) => props.onChange(e)}
+          placeholder="search..."
+          onChange={e => props.onChange(e)}
           // value={props.searchValue}
           onFocus={() => setFocused(true)}
           onBlur={() => {

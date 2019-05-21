@@ -34,6 +34,7 @@ const Container = styled.div`
     flex-direction: column;
     position: relative;
     overflow: hidden;
+    border-radius: 10px;
 
     img {
       width: 200px;
